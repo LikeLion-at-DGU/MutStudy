@@ -34,9 +34,9 @@
         </div>
 
         <div class="row projects gx-lg-5">
-            <a href="work-single.html" class="col-sm-6 col-lg-4 text-decoration-none project marketing social business">
+            <a href="{% url 'main:worksingle' %}" class="col-sm-6 col-lg-4 text-decoration-none project marketing social business">
                 <div class="service-work overflow-hidden card mb-5 mx-5 m-sm-0">
-                    <img class="card-img-top" src="./assets/img/our-work-01.jpg" alt="...">
+                    <img class="card-img-top" src="{% static 'img/our-work-01.jpg' %}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title light-300 text-dark">Digital Marketing</h5>
                         <p class="card-text light-300 text-dark">
@@ -49,9 +49,9 @@
                     </div>
                 </div>
             </a>
-            <a href="work-single.html" class="col-sm-6 col-lg-4 text-decoration-none project graphic social">
+            <a href="{% url 'main:worksingle' %}" class="col-sm-6 col-lg-4 text-decoration-none project graphic social">
                 <div class="service-work overflow-hidden card mx-5 mx-sm-0 mb-5">
-                    <img class="card-img-top" src="./assets/img/our-work-02.jpg" alt="...">
+                    <img class="card-img-top" src="{% static 'img/our-work-02.jpg' %}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title light-300 text-dark">Corporate Branding</h5>
                         <p class="card-text light-300 text-dark">
@@ -64,9 +64,9 @@
                     </div>
                 </div>
             </a>
-            <a href="work-single.html" class="col-sm-6 col-lg-4 text-decoration-none project marketing graphic business">
+            <a href="{% url 'main:worksingle' %}" class="col-sm-6 col-lg-4 text-decoration-none project marketing graphic business">
                 <div class="service-work overflow-hidden card mx-5 mx-sm-0 mb-5">
-                    <img class="card-img-top" src="./assets/img/our-work-03.jpg" alt="...">
+                    <img class="card-img-top" src="{% static 'img/our-work-03.jpg' %}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title light-300 text-dark">Leading Digital Solution</h5>
                         <p class="card-text light-300 text-dark">
@@ -79,9 +79,9 @@
                     </div>
                 </div>
             </a>
-            <a href="work-single.html" class="col-sm-6 col-lg-4 text-decoration-none project social business">
+            <a href="{% url 'main:worksingle' %}" class="col-sm-6 col-lg-4 text-decoration-none project social business">
                 <div class="service-work overflow-hidden card mx-5 mx-sm-0 mb-5">
-                    <img class="card-img-top" src="./assets/img/our-work-04.jpg" alt="...">
+                    <img class="card-img-top" src="{% static 'img/our-work-04.jpg' %}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title light-300 text-dark">Smart Applications</h5>
                         <p class="card-text light-300 text-dark">
@@ -94,9 +94,9 @@
                     </div>
                 </div>
             </a>
-            <a href="work-single.html" class="col-sm-6 col-lg-4 text-decoration-none project marketing">
+            <a href="{% url 'main:worksingle' %}" class="col-sm-6 col-lg-4 text-decoration-none project marketing">
                 <div class="service-work overflow-hidden card mx-5 mx-sm-0 mb-5">
-                    <img class="card-img-top" src="./assets/img/our-work-05.jpg" alt="...">
+                    <img class="card-img-top" src="{% static 'img/our-work-05.jpg' %}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title light-300 text-dark">Corporate Stationary</h5>
                         <p class="card-text light-300 text-dark">
@@ -109,9 +109,9 @@
                     </div>
                 </div>
             </a>
-            <a href="work-single.html" class="col-sm-6 col-lg-4 text-decoration-none project marketing graphic">
+            <a href="{% url 'main:worksingle' %}" class="col-sm-6 col-lg-4 text-decoration-none project marketing graphic">
                 <div class="service-work overflow-hidden card mx-5 mx-sm-0 mb-5">
-                    <img class="card-img-top" src="./assets/img/our-work-06.jpg" alt="...">
+                    <img class="card-img-top" src="{% static 'img/our-work-06.jpg' %}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title light-300 text-dark">8 Financial Tips</h5>
                         <p class="card-text light-300 text-dark">
@@ -161,19 +161,19 @@
                 </div>
                 <div class="col-lg-6 offset-lg-1 align-left">
                     <div class="row">
-                        <a class="col" data-type="image" data-fslightbox="gallery" href="./assets/img/feature-work-1-large.jpg">
-                            <img class="img-fluid" src="./assets/img/feature-work-1.jpg">
+                        <a class="col" data-type="image" data-fslightbox="gallery" href="{% static 'img/feature-work-01-large.jpg' %}">
+                            <img class="img-fluid" src="{% static 'img/feature-work-01.jpg' %}">
                         </a>
-                        <a class="col" data-type="image" data-fslightbox="gallery" href="./assets/img/feature-work-2-large.jpg">
-                            <img class="img-fluid" src="./assets/img/feature-work-2.jpg">
+                        <a class="col" data-type="image" data-fslightbox="gallery" href="{% static 'img/feature-work-03.jpg' %}">
+                            <img class="img-fluid"src="{% static 'img/feature-work-02.jpg' %}">
                         </a>
                     </div>
                     <div class="row pt-4">
-                        <a class="col" data-type="image" data-fslightbox="gallery" href="./assets/img/feature-work-3-large.jpg">
-                            <img class="img-fluid" src="./assets/img/feature-work-3.jpg">
+                        <a class="col" data-type="image" data-fslightbox="gallery" href="{% static 'img/feature-work-03-large.jpg' %}">
+                            <img class="img-fluid" src="{% static 'img/feature-work-03.jpg' %}">
                         </a>
-                        <a class="col" data-type="image" data-fslightbox="gallery" href="./assets/img/feature-work-4-large.jpg">
-                            <img class="img-fluid" src="./assets/img/feature-work-4.jpg">
+                        <a class="col" data-type="image" data-fslightbox="gallery" href="{% static 'img/feature-work-04-large.jpg' %}">
+                            <img class="img-fluid" src="{% static 'img/feature-work-04.jpg' %}">
                         </a>
                     </div>
                 </div>
