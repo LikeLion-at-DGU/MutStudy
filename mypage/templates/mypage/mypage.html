@@ -56,22 +56,10 @@ main {
   border: 4px solid #fff;
 }
 
-.active {
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  position: absolute;
-  right: calc(50% - 70px);
-  top: 75px;
-  background-color: #FFC107;
-  border: 3px solid #fff;
-}
+
 
 @media (max-width:990px) {
-  .active {
-    right: calc(50% - 60px);
-    top: 50px;
-  } 
+
 }
 
 .name {
@@ -192,10 +180,8 @@ main {
 <!-- 이하 프로필 -->
               <div class="photo-left"> 
                 <img class="photo" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"/>
-                <div class="active"></div>
               </div>
 
-              이
               <h4 class="name">{{user.username}}</h4>
               <p class="info">Developer</p>
               <p class="info">{{user.email}}</p>
@@ -217,6 +203,7 @@ main {
               <p class="desc">안냐하세요 스터디 아자아자자</p>
             </div>
 <!-- 프로필끝 -->
+
             <div class="right col-lg-8">
                 <div class="myList">
                     <div class="story">
