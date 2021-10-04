@@ -16,12 +16,14 @@
                         <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'main:showmain' %}">스터디 찾기</a>
                     </li>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'main:work' %}">스터디 만들기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'main:contact' %}">마이페이지</a>
+                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'mypage:mypage' %}">마이페이지</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="navbar align-self-center d-flex">
