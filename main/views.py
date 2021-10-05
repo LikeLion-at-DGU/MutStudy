@@ -20,3 +20,6 @@ def worksingle(request):
 
 def work(request):
     return render(request, 'main/work.html')
+
+def studying(request):
+    return render(request, 'main/studying.html')
