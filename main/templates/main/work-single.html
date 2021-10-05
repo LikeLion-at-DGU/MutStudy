@@ -166,6 +166,69 @@
                 </div>
             </div>
         </div><!-- End Slider -->
+        <div class="row">
+            <div class="regibox" align="center">
+                <form method="POST" action="date">
+                    {% csrf_token %}
+                    <input type="date" id="date" name="date" value="2021-02-20" min="2021-02-20" max="2022-01-01">
+                    <br><br>
+                    <button type="submit" value="submit">일정표 생성</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="calendar">
+                <div class="calendar_header">
+                    <div class="calendar_nav">
+                        <button class="nav-btn go-prev">&lt;</button>
+                        <span class="year"></span>년
+                        <span class="month"></span>월
+                        <!-- <button class="nav-btn go-today">오늘로 가기</button> -->
+                        <button class="nav-btn go-next">&gt;</button>
+                    </div>
+                </div>
+                <div class="calendar_main">
+                    <div class="days">
+                        <div class="day">일</div>
+                        <div class="day">월</div>
+                        <div class="day">화</div>
+                        <div class="day">수</div>
+                        <div class="day">목</div>
+                        <div class="day">금</div>
+                        <div class="day">토</div>
+                    </div>
+                    <div class="dates"></div>
+                </div>
+            
+                <!-- 예약 창 -->
+                <div class="resv-wrapper">
+                    <div class="resv-bg">
+                        <button class="resv-close">X</button>
+                        <div class="resv_info">
+
+                            <div class="resv-remain">
+                                <span>N</span>명 출석함
+                            </div>
+                            <div>
+                                <h3>
+                                    출석자 목록
+                                </h3>
+                                <hr>
+                                <div class="resv-list">  
+                                    <p>이건회</p>
+                                    <p>정준홍</p>
+                                    <p>서희찬</p>
+                                </div>
+                                <hr>
+                                <div style="float: right;">
+                                <button>출석하기</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-8 m-auto text-left justify-content-center">
