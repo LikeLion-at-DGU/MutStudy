@@ -211,6 +211,14 @@ main {
 
               <div class="row gallery">
 
+                가입한 스터디
+                {%for study in my_study%}
+                  <a href="{%url 'study:detail' study.id%}">{{study.name}}</a>
+                {%endfor%}
+                가입 신청 대기중인 스터디
+                {%for study in my_study_request%}
+                  <a href="{%url 'study:detail' study.id%}">{{study.name}}</a>
+                {%endfor%}
                 <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
                     <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
                         <img class="card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
