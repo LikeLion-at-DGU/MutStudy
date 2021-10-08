@@ -11,6 +11,14 @@ urlpatterns = [
     path("update/<int:id>", update, name="update"),  # 기존 스터디 수정 동작
     path("delete/<int:id>", delete, name="delete"),  # 기존 스터디 삭제 동작
     path("apply/<int:id>", apply_study, name="apply_study"),
-    path("accept_request/<int:id>", accept_request, name="accept_request"),
-    path("refuse_request/<int:id>", refuse_request, name="refuse_request"),
+    path(
+        "accept_request/<int:study_id>/<int:user_id>",
+        accept_request,
+        name="accept_request",
+    ),
+    path(
+        "refuse_request/<int:study_id>/<int:user_id>",
+        refuse_request,
+        name="refuse_request",
+    ),
 ]

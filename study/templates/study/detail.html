@@ -17,8 +17,8 @@
         관련 이미지: {{post.image}}<br>
     {%endif%}
     {%if is_author%}
-        {%if post.member_request%}
-            {%for member in post.member_request%}
+        {%if post.study_member_request%}
+            {%for member in post.study_member_request.all%}
                 {{member}}
                 <a href="{% url 'study:accept_request' post.id member.id %}">수락</a>
                 <a href="{% url 'study:refuse_request' post.id member.id %}">거절</a><br>
@@ -27,26 +27,26 @@
             <strong>지원자 아직 없음!</strong><br>
         {%endif%}
     {%else%}
-        {%if request.user in post.member%}
+        {%if request.user in post.study_member.all%}
             <strong>해당 스터디에 가입돼 있습니다!</strong>
-        {%elif request.user in post.member_request%}
+        {%elif request.user in post.study_member_request.all%}
             <strong>승인 대기 중입니다.</strong>
-        {%else%}
+            <a href="{% url 'study:apply_study' post.id %}">지원취소</a><br>
+        {%elif request.user.is_authenticated %}
             <a href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
         {%endif%}
-
     {%endif%}
 
-    {{post.member}}
-    {%if request.user in post.member%}
+    {%if request.user in post.study_member.all%}
         현재 가입 멤버들:
-        {%for mem in post.member%}
+        {%for mem in post.study_member.all%}
             {{mem}}
         {%endfor%}
     {%endif%}
+    <br>
     {%if is_author%}
-    <a href="{% url 'study:edit' post.id %}">수정하기</a>
-    <a href="{% url 'study:delete' post.id %}">삭제하기</a>
+        <a href="{% url 'study:edit' post.id %}">수정하기</a>
+        <a href="{% url 'study:delete' post.id %}">삭제하기</a>
     {%endif%}
 </section>
 {% endblock %}

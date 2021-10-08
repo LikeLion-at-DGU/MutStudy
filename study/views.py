@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import study
+from django.contrib.auth.models import User
 
 # Create your views here.
 def studylist(request):
@@ -26,26 +27,39 @@ def create(request):
     new_study.difficulty = request.POST["difficulty"]
     new_study.phnum = request.POST["phnum"]
     new_study.image = request.FILES.get("image")
-    new_study.member.append(request.user)
 
     new_study.save()
+
+    new_study.study_member.add(request.user)
 
     return redirect("study:detail", new_study.id)
 
 
 def apply_study(request, id):
     cur_study = study.objects.get(id=id)
-    cur_study.member_request.append(request.user)
+    is_apply = request.user in cur_study.study_member_request.all()
+    if is_apply:
+        cur_study.study_member_request.remove(request.user)
+    else:
+        cur_study.study_member_request.add(request.user)
+    return redirect("study:detail", cur_study.id)
+
+
+def accept_request(request, study_id, user_id):
+    request_user = get_object_or_404(User, pk=user_id)
+    cur_study = study.objects.get(id=study_id)
+    cur_study.study_member_request.remove(request_user)
+    cur_study.study_member.add(request_user)
 
     return redirect("study:detail", cur_study.id)
 
 
-def accept_request(request, id):
-    pass
+def refuse_request(request, study_id, user_id):
+    request_user = get_object_or_404(User, pk=user_id)
+    cur_study = study.objects.get(id=study_id)
+    cur_study.study_member_request.remove(request_user)
 
-
-def refuse_request(request, id):
-    pass
+    return redirect("study:detail", cur_study.id)
 
 
 def detail(request, id):
@@ -84,8 +98,8 @@ def update(request, id):
     update_study.body = request.POST["body"]
     update_study.difficulty = request.POST["difficulty"]
     update_study.phnum = request.POST["phnum"]
-    update_study.image = request.FILES.get("image")
-    update_study.member.append(request.user)
+    if request.FILES.get("image"):
+        update_study.image = request.FILES.get("image")
 
     update_study.save()
 
