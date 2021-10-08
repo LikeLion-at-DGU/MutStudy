@@ -18,16 +18,35 @@
     {%endif%}
     {%if is_author%}
         {%if post.member_request%}
-            {%for member in member_request%}
+            {%for member in post.member_request%}
                 {{member}}
-                <span>수락</span>
-                <span>거절</span><br>
+                <a href="{% url 'study:accept_request' post.id member.id %}">수락</a>
+                <a href="{% url 'study:refuse_request' post.id member.id %}">거절</a><br>
             {%endfor%}
         {%else%}
             <strong>지원자 아직 없음!</strong><br>
         {%endif%}
     {%else%}
-        <span>신청하기</span><br>
+        {%if request.user in post.member%}
+            <strong>해당 스터디에 가입돼 있습니다!</strong>
+        {%elif request.user in post.member_request%}
+            <strong>승인 대기 중입니다.</strong>
+        {%else%}
+            <a href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
+        {%endif%}
+
+    {%endif%}
+
+    {{post.member}}
+    {%if request.user in post.member%}
+        현재 가입 멤버들:
+        {%for mem in post.member%}
+            {{mem}}
+        {%endfor%}
+    {%endif%}
+    {%if is_author%}
+    <a href="{% url 'study:edit' post.id %}">수정하기</a>
+    <a href="{% url 'study:delete' post.id %}">삭제하기</a>
     {%endif%}
 </section>
 {% endblock %}
