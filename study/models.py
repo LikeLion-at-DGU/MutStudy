@@ -25,6 +25,7 @@ class study(models.Model):
     study_member = models.ManyToManyField(
         User, related_name="study_member", through="member"
     )  # 가입된 유저들
+    is_over = models.BooleanField()
 
 
 class member_request(models.Model):
