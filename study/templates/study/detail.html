@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+    <h1>스터디명 : {{post.name}}</h1>
+    작성자: {{post.writer}}<br>
+    스터디 분야: {{post.section}}<br>
+    한줄 소개: {{post.intro}}<br>
+    모집 대상: {{post.qualification}}<br>
+    스터디 모집 인원: {{post.member_start}} ~ {{post.member_end}}<br>
+    활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
+    스터디 정보: {{post.body}}<br>
+    스터디 난이도: {{post.difficulty}}<br>
+    스터디장 번호: {{post.phnum}}<br>
+    {%if post.image%}
+        관련 이미지: {{post.image}}<br>
+    {%endif%}
+    {%if is_author%}
+        {%if post.member_request%}
+            {%for member in member_request%}
+                {{member}}
+                <span>수락</span>
+                <span>거절</span><br>
+            {%endfor%}
+        {%else%}
+            <strong>지원자 아직 없음!</strong><br>
+        {%endif%}
+    {%else%}
+        <span>신청하기</span><br>
+    {%endif%}
+</section>
+{% endblock %}
+
