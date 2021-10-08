@@ -46,6 +46,8 @@
                 <a href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
             {%endif%}
         {%endif%}
+    {%else%}
+        <h1>마감!!!!!!!!!</h1>
     {%endif%}
     {%if request.user in post.study_member.all%}
     <!-- 접속자가 스터디에 가입 완료돼있으면 -->
