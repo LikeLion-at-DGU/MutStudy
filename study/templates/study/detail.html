@@ -14,7 +14,7 @@
     스터디 난이도: {{post.difficulty}}<br>
     스터디장 번호: {{post.phnum}}<br>
     {%if post.image%}
-        관련 이미지: {{post.image}}<br>
+        관련 이미지: <img src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
     {%endif%}
     {%if not post.is_over%}
     <!-- 글 작성자가 마감하기 전이라면 -->
@@ -64,9 +64,6 @@
             <a href="{% url 'study:edit' post.id %}">수정하기</a>
             <a href="{% url 'study:delete' post.id %}">삭제하기</a>
             <a href="{% url 'study:recruit_over' post.id%}">마감하기</a>
-        {%else%}
-        <!-- 마감 상태의 글이라면 -->
-            <a href="{% url 'study:recruit_over' post.id%}">마감취소</a>
         {%endif%}
     {%endif%}
 </section>

@@ -10,8 +10,8 @@ class study(models.Model):
     qualification = models.CharField(max_length=100)  # 스터디 참가 대상
     member_start = models.IntegerField(default=1)  # 모집 인원 시작
     member_end = models.IntegerField(default=1)  # 모집 인원 끝
-    start_date = models.DateTimeField()  # 활동 기간(시작일)
-    due_date = models.DateTimeField()  # 활동 기간(마감일
+    start_date = models.DateField()  # 활동 기간(시작일)
+    due_date = models.DateField()  # 활동 기간(마감일
     body = models.TextField()  # 스터디 정보
     body = models.TextField()  # 스터디 정보
     difficulty = models.IntegerField(default=0)  # 스터디 난이도(빡센 정도 1~10으로 입력받을 예정)

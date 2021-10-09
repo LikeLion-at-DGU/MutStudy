@@ -65,10 +65,8 @@ def refuse_request(request, study_id, user_id):
 
 def recruit_over(request, id):
     cur_study = study.objects.get(id=id)
-    if cur_study.is_over:  # 마감 -> 마감 전
-        cur_study.is_over = False
-    else:  # 마감 전 -> 마감
-        cur_study.is_over = True
+    cur_study.is_over = True
+    cur_study.study_member_request.clear()  # 마감할거니까 혹시라도 가입요청 있으면 다 지워
     cur_study.save()
 
     return redirect("study:detail", cur_study.id)
