@@ -8,15 +8,17 @@
         <p>스터디명 : <input type="text" name="name" required></p>
         <p>스터디 분야: 
             <select name="section">
-                <option value="1">테스트 분야1</option>
-                <option value="2">테스트 분야2</option>
-                <option value="3">테스트 분야3</option>
+                <option value="어학">어학</option>
+                <option value="자격증">자격증</option>
+                <option value="취업">취업</option>
+                <option value="코딩테스트">코딩테스트</option>
+                <option value="취업">취업</option>
             </select>
         </p>
         <p>스터디 한줄 소개:  <input type="text" name="intro" required></p>
         <p>모집 대상: <input type="text" name="qualification" required></p>
         <p>모집 인원: <input type="number" name="member_start" min="1" required> ~ <input type="number" name="member_end" min="1" required></p>
-        <p>활동 기간: <input type="datetime-local" name="start_date" required> ~ <input type="datetime-local" name="due_date" required></p>
+        <p>활동 기간: <input type="date" name="start_date" required> ~ <input type="date" name="due_date" required></p>
         <p>스터디 정보: <textarea style="width: 100%;" type="text" name="body" cols="130" rows="50"></textarea></p>
         <p>스터디 난이도: <input type="number" name="difficulty" min="1" max = "10" required></p>
         <p>스터디장 번호: <input type="text" name="phnum" required></p>
