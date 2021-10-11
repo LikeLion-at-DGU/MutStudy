@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>스터디 목록</h1>
+<section>
+{%for post in posts%}
+<hr>
+<div>
+    <a href="{%url 'study:detail' post.id%}"><h3 style="font-family: 'Nanum Gothic Coding', sans-serif;">{{post.name}}</h3></a>
+    글쓴이: {{post.writer}} 
+</div>
+{%endfor%}
+
+</section>
+{% endblock %}
+

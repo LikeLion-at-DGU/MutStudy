@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+    <h1>스터디명 : {{post.name}}</h1>
+    작성자: {{post.writer}}<br>
+    스터디 분야: {{post.section}}<br>
+    한줄 소개: {{post.intro}}<br>
+    모집 대상: {{post.qualification}}<br>
+    스터디 모집 인원: {{post.member_start}} ~ {{post.member_end}}<br>
+    활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
+    스터디 정보: {{post.body}}<br>
+    스터디 난이도: {{post.difficulty}}<br>
+    스터디장 번호: {{post.phnum}}<br>
+    {%if post.image%}
+        관련 이미지: <img src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
+    {%endif%}
+    {%if not post.is_over%}
+    <!-- 글 작성자가 마감하기 전이라면 -->
+        {%if is_author%}
+        <!-- 접속자가 글 작성자라면 -->
+            {%if post.study_member_request%}
+            <!-- 그리고 혹시 지금 스터디 지원한 사람이 있다면 -->
+                {%for member in post.study_member_request.all%}
+                <!-- 지원한 사람 for문으로 꺼내고 수락 / 거절 -->
+                    {{member}}
+                    <a href="{% url 'study:accept_request' post.id member.id %}">수락</a>
+                    <a href="{% url 'study:refuse_request' post.id member.id %}">거절</a><br>
+                {%endfor%}
+            {%else%}
+            <!-- 지원한 사람이 없다면 -->
+                <strong>지원자 아직 없음!</strong><br>
+            {%endif%}
+        {%else%}
+        <!-- 접속자가 글 작성자가 아니라면 -->
+            {%if request.user in post.study_member.all%}
+            <!-- 접속자가 스터디에 가입돼 있으면 -->
+                <strong>해당 스터디에 가입돼 있습니다!</strong>
+            {%elif request.user in post.study_member_request.all%}
+            <!-- 접속자가 스터디에 가입 신청을 넣은 상태라면 -->
+                <strong>승인 대기 중입니다.</strong>
+                <a href="{% url 'study:apply_study' post.id %}">지원취소</a><br>
+            {%elif request.user.is_authenticated %}
+            <!-- 어느 케이스에도 해당 안되고 로그인이 돼 있다면 -->
+                <a href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
+            {%endif%}
+        {%endif%}
+    {%else%}
+        <h1>마감!!!!!!!!!</h1>
+    {%endif%}
+    {%if request.user in post.study_member.all%}
+    <!-- 접속자가 스터디에 가입 완료돼있으면 -->
+        현재 가입 멤버들:
+        {%for member in post.study_member.all%}
+            {{member}}
+        {%endfor%}
+    {%endif%}
+    <br>
+    {%if is_author%}
+    <!-- 접속자가 글 작성자라면 -->
+        {%if not post.is_over%}
+        <!-- 마감하기 전 글이라면 -->
+            <a href="{% url 'study:edit' post.id %}">수정하기</a>
+            <a href="{% url 'study:delete' post.id %}">삭제하기</a>
+            <a href="{% url 'study:recruit_over' post.id%}">마감하기</a>
+        {%endif%}
+    {%endif%}
+</section>
+{% endblock %}
+

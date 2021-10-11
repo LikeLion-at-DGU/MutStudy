@@ -13,12 +13,12 @@
             <div class="flex-fill mx-xl-5 mb-2">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
                     <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'main:showmain' %}">스터디 찾기</a>
+                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'study:studylist' %}">스터디 찾기</a>
                     </li>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'main:work' %}">스터디 만들기</a>
+                        <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'study:new' %}">스터디 만들기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn-outline-primary rounded-pill px-3" href="{% url 'mypage:mypage' %}">마이페이지</a>

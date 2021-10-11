@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+    <form action="{%url 'study:create'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <p>스터디명 : <input type="text" name="name" required></p>
+        <p>스터디 분야: 
+            <select name="section">
+                <option value="어학">어학</option>
+                <option value="자격증">자격증</option>
+                <option value="취업">취업</option>
+                <option value="코딩테스트">코딩테스트</option>
+                <option value="취업">취업</option>
+            </select>
+        </p>
+        <p>스터디 한줄 소개:  <input type="text" name="intro" required></p>
+        <p>모집 대상: <input type="text" name="qualification" required></p>
+        <p>모집 인원: <input type="number" name="member_start" min="1" required> ~ <input type="number" name="member_end" min="1" required></p>
+        <p>활동 기간: <input type="date" name="start_date" required> ~ <input type="date" name="due_date" required></p>
+        <p>스터디 정보: <textarea style="width: 100%;" type="text" name="body" cols="130" rows="50"></textarea></p>
+        <p>스터디 난이도: <input type="number" name="difficulty" min="1" max = "10" required></p>
+        <p>스터디장 번호: <input type="text" name="phnum" required></p>
+		<p>사진: <input type="file" name="image"></p>
+        <button type="submit">제출</button>
+
+    </form>
+</section>
+{% endblock %}
