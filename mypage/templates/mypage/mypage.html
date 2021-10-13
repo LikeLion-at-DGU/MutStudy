@@ -20,11 +20,11 @@
 
 header {
   background: #eee;
-  background-image: url("https://cdn.pixabay.com/photo/2016/11/29/09/24/swan-1868697_1280.jpg");
+  background-image: url("https://media.vlpt.us/images/seochan99/post/a36f4a37-c087-4b26-889d-8721bcf4285a/IMG_8780_edited.JPG");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-color: red;
+  background-color: whitesmoke;
   height: 250px;
 }
 
@@ -191,7 +191,9 @@ main {
               </div>
 
               <h4 class="name">{{user.username}}</h4>
-              <p class="info">Developer</p>
+              
+              <!-- 아래 학번표시 -->
+              <!-- <p class="info">{{user.}}</p> -->
               <p class="info">{{user.email}}</p>
 
               <!-- 팔로우기능 -->
@@ -206,18 +208,17 @@ main {
 
                 <!-- user -->
                     <div class="follows">
-                      <p style="color: white; font-weight: 500;">follower: {{user.profile.followers.count}}</p> 
+                      <p style="color: rgba(0, 0, 0, 0.712); font-weight: 500;">follower: {{user.profile.followers.count}}</p> 
                       {%for follower in user.profile.followers.all %}
                         <a href="{% url 'mypage:mypage' follower.user.id %}">{{follower.user.username}}</a> 
                       {% endfor %}
-                        <p style="color: white; font-weight: 500;">following: {{user.profile.followings.count}}</p>
+                        <p style="color: rgba(0, 0, 0, 0.712); font-weight: 500;">following: {{user.profile.followings.count}}</p>
                       {% for following in user.profile.followings.all %}
                         <a href="{%url 'mypage:mypage' following.user.id%}">{{following.user.username}}</a>
                       {% endfor %}
                     </div>
-
                     {% if request.user == user %}
-                    <a href="{% url 'mypage:profile_update' %}"><button type="button" class="btn btn-default" style="background-color:rgb(80, 99, 185); color: whitesmoke; margin-bottom: 10px;">프로필 편집</button></a></h2></a>
+                    <a href="{% url 'mypage:profile_update' %}"><button type="button" class="btn btn-default" style="background-color:rgb(80, 99, 185); color: whitesmoke; margin: 10px 0px;">프로필 편집</button></a></h2></a>
                     {% endif %}
 
               <!-- <div class="stats row">
@@ -233,9 +234,9 @@ main {
               <br>
               <h4>Status Message</h4>
               {% if user.profile.bio %}
-              <p class="desc">{{user.profile.bio}}</p>
+              <p class="desc" style="font-size: larger;">{{user.profile.bio}}</p>
               {% else %}
-              <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="font-weight: 400;">" 아자아자 홧팅 "</h1>
+              <p class="desc" style="font-size: larger;">"아자아자자"</p>
               {% endif %}
               <hr/>
             </div>
@@ -255,7 +256,7 @@ main {
                 <!-- 공부사진 -->
                 <hr>
                 <!-- <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image"> -->
-                <h1>가입 완료한 스터디</h1>
+                <h1>가입 완료한 스터디 <i class="fas fa-bell"></i></h1>
                 <hr>
                 {%for study in my_study%}
                 <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
@@ -279,7 +280,7 @@ main {
                 {%endfor%}
                 <hr/>
 
-                <h1>가입 대기중인 스터디</h1>
+                <h1>가입 대기중인 스터디 <i class="far fa-bell"></i></h1>
                 <hr>
                 {%for study in my_study_request%}
                 <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
