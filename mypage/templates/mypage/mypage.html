@@ -210,49 +210,41 @@ main {
                   </div>
 
               <div class="row gallery">
-
-                가입한 스터디
+                <!-- 공부사진 -->
+                <!-- <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image"> -->
+                <h1>가입 완료한 스터디</h1>
                 {%for study in my_study%}
-                  <a href="{%url 'study:detail' study.id%}">{{study.name}}</a>
-                {%endfor%}
-                가입 신청 대기중인 스터디
-                {%for study in my_study_request%}
-                  <a href="{%url 'study:detail' study.id%}">{{study.name}}</a>
-                {%endfor%}
                 <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
-                    <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                        <img class="card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
-                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-                            <div class="service-work-content text-left text-light">
-                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">토익 900점 뿌시기</span>
-                                <p class="card-text">토익 900점 달성을 위한 스터디입니다.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-md-4 col-sm-6 project branding">
-                    <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                    <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                      <!-- 만약 스터디 이미지가 있다면 스터디 이미지,없다면 고정 이미지 사용  -->
                         <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
+                        <!-- 없다면 분야에따라서 사진 다르게 기존 이미지 사용  -->
                         <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                             <div class="service-work-content text-left text-light">
-                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">코딩테스트 스터디</span>
-                                <p class="card-text">코딩테스트를 위한 스터디입니다.</p>
+                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
+                                <p class="card-text" style="margin: 8px;">{{study.name}}</p>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
-                    <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                        <img class="card-img" src="{% static 'img/services-04.jpg' %}" alt="Card image">
-                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-                            <div class="service-work-content text-left text-light">
-                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">정보처리기사 스터디</span>
-                                <p class="card-text">정보처리기사 자격증 대비 스터디입니다.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                {%endfor%}
 
+                <h1>가입 대기중인 스터디</h1>
+                {%for study in my_study_request%}
+                <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+                    <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                      <!-- 만약 스터디 이미지가 있다면 스터디 이미지,없다면 고정 이미지 사용  -->
+                        <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
+                        <!-- 없다면 분야에따라서 사진 다르게 기존 이미지 사용  -->
+                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="service-work-content text-left text-light">
+                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
+                                <p class="card-text" style="margin: 8px;">{{study.name}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {%endfor%}
               </div>
 
             </div>
