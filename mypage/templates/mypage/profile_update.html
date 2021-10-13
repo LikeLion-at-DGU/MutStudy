@@ -7,14 +7,14 @@
         background-image: url(../../static/images/배경사진.jpg);
     }
     input{
-        background-color:rgb(205, 196, 253); 
+        background-color:rgb(108, 128, 216); 
         color: whitesmoke;
         border: none;
     }
 
 </style>
-<h1 style="margin-top: 150px; text-align: center; color: whitesmoke; font-weight: 500;">{{user.username}} 프로필 업데이트</h1>
-
+<h1 style="margin-top: 150px; text-align: center;">{{user.username}} 프로필 업데이트</h1>
+<br>
     {% if error_msg %}
     <div class="alert alert-warning alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

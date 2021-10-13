@@ -4,7 +4,7 @@
 {% block content %}
 <section>
     <h1>스터디명 : {{post.name}}</h1>
-    작성자: {{post.writer}}<br>
+    작성자: <a href="{% url 'mypage:mypage' post.writer.id %}">{{post.writer}}</a><br>
     스터디 분야: {{post.section}}<br>
     한줄 소개: {{post.intro}}<br>
     모집 대상: {{post.qualification}}<br>
