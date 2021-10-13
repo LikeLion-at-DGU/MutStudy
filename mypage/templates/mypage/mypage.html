@@ -179,23 +179,67 @@ main {
 
 <!-- 이하 프로필 -->
               <div class="photo-left"> 
-                <img class="photo" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"/>
+                <!-- <img class="photo" src=/> -->
+
+                <!-- 프로필 이미지 -->
+                {% if user.profile.profile_photo %}
+                <img class="photo" src="{{user.profile.profile_photo.url}}" width="200"> <br>
+                {% else %}
+                <img class="photo" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="200"> <br> 
+                <!-- 이미지주소 몰랑.. -->
+                {% endif %}
               </div>
 
               <h4 class="name">{{user.username}}</h4>
               <p class="info">Developer</p>
               <p class="info">{{user.email}}</p>
 
-              <div class="stats row">
+              <!-- 팔로우기능 -->
+              <div class="followButton">
+                {% if request.user != user %}
+                  {% if request.user.profile in user.profile.followers.all %}
+                      <a href="{%url 'mypage:follow' user.id %}" style="color: white;"><button type="button" class="btn btn-outline-info">언팔로우</button></a>
+                  {% else %}
+                    <a href="{%url 'mypage:follow' user.id %} " style="color: white;" ><button type="button" class="btn btn-info">팔로우</button></a> {% endif %}
+                {% endif %}
+                {% if request.user == user %}
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                {% endif %}
+              </div>
+
+              <div class="col-xs-6 col-md-3 "data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                <!-- user -->
+                  <div class="container">
+                    <div class="follows">
+                      <p style="color: white; font-weight: 500;">follower: {{user.profile.followers.count}}</p> 
+                      {%for follower in user.profile.followers.all %}
+                        <a href="{% url 'mypage:mypage' follower.user.id %}">{{follower.user.username}}</a> 
+                      {% endfor %}
+                        <p style="color: white; font-weight: 500;">following: {{user.profile.followings.count}}</p>
+                      {% for following in user.profile.followings.all %}
+                        <a href="{%url 'mypage:mypage' following.user.id%}">{{following.user.username}}</a>
+                      {% endfor %}
+                    </div>
+                    {% if request.user == user %}
+                    <a href="{% url 'mypage:profile_update' %}"><button type="button" class="btn btn-default" style="background-color:rgba(194, 180, 255, 0.774); color: whitesmoke; margin-top: 30px;">프로필 편집</button></a></h2></a>
+                  {% endif %}
+              </div>
+
+              <!-- <div class="stats row">
                 <div class="stat col-xs-4" style="padding-right: 30px; ">
                   <p class="number-stat">3,619</p>
                   <p class="desc-stat">Followers</p>
                   <p class="number-stat">42</p>
                   <p class="desc-stat">Following</p>
                 </div>
+              </div> -->
 
-              </div>
-              <p class="desc">안냐하세요 스터디 아자아자자</p>
+              <!-- <p class="desc">안냐하세요 스터디 아자아자자</p>-->
+              {% if user.profile.bio %}
+              <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="font-weight: 400;">" {{user.profile.bio}} "</h1>
+              {% else %}
+              <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="font-weight: 400;">" 아자아자 홧팅 "</h1>
+              {% endif %}
             </div>
 <!-- 프로필끝 -->
 
