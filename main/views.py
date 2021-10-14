@@ -23,7 +23,8 @@ def work(request):
     return render(request, 'main/work.html')
 
 def studying(request):
-    return render(request, 'main/studying.html')
+    diarys = Diary.objects.all()
+    return render(request, 'main/studying.html', {'diarys':diarys})
 
 def plan(request):
     plans = Plan.objects.all()
@@ -88,3 +89,14 @@ def delete_comment(request,comment_id):
     delete_comment = get_object_or_404(Comment,pk = comment_id)
     delete_comment.delete()
     return redirect('main:plan_detail', delete_comment.plan.id)
+
+
+# 스터디 일지 CRUD
+
+def diary_detail(request,id):
+    diary = get_object_or_404(Diary, pk = id)
+    return render(request, 'diary_detail.html',{'diary':diary})
+
+def diary_new(request):
+    return render(request, 'main/diary_new.html')
+
