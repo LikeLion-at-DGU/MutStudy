@@ -31,6 +31,9 @@
                 </div>
                 <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
                     <ul class="text-left px-4 list-unstyled mb-0 light-300">
+                        <!-- {% for notice in notices %}
+                            <li><i class="bx bxs-circle me-2"></i>{{notice.content}}</li>
+                        {%endfor%} -->
                         <li><i class="bx bxs-circle me-2"></i>5 Users</li>
                         <li><i class="bx bxs-circle me-2"></i>2 TB space</li>
                         <li><i class="bx bxs-circle me-2"></i>Community Forums</li>
@@ -542,9 +545,37 @@
                 <h1 class="h2 py-5">스터디 일지</h1>
                 <div class="col-md-12 text-left justify-content-center">
                     <div class="row gx-5">
-
-
+                        
+                        <div class="form-row pt-2">
+                            <div class="col-md-12 col-10 text-end">
+                                <button type="submit" class="btn btn-secondary text-white px-md-4 px-2 py-md-3 py-1 radius-0 light-300"><a href="{%url 'main:diary_new'%}}">일지 작성하기</a></button>
+                            </div>
+                        </div>
+                        <!-- 일지목록 -->
+                        {% for diary in diarys %}
                         <div class="col-sm-6 col-lg-4 mb-5">
+                            <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
+                                <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
+                                <div class="related-body card-body p-4">
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">{{diary.title}}</h5>
+                                    <p class="card-text pt-2 mb-1 light-300 text-dark">
+                                        {{diary.date}}
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="text-primary light-300"><a href="{%url 'diary_detail' diary.id%}">Read more</a></span>
+                                        <div class="light-300">
+                                            <i class='bx-fw bx bx-heart me-1'></i>5
+                                            <i class='bx-fw bx bx-chat    ms-1 me-1'></i>3
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {%endfor%}
+                        
+                        
+                        
+                        <!-- <div class="col-sm-6 col-lg-4 mb-5">
                             <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
                                 <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
                                 <div class="related-body card-body p-4">
@@ -561,8 +592,8 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-5">
+                        </div> -->
+                        <!-- <div class="col-sm-6 col-lg-4 mb-5">
                             <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
                                 <img class="related-img card-img-top" src="{% static 'img/related-post-02.jpg' %}" alt="Card image cap">
                                 <div class="related-body card-body p-4">
@@ -597,7 +628,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
