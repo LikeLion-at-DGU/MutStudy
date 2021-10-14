@@ -2,16 +2,88 @@
 {% load static %}
 
 {% block content %}
-<h1>스터디 목록</h1>
-<section>
-{%for post in posts%}
-<hr>
-<div>
-    <a href="{%url 'study:detail' post.id%}"><h3 style="font-family: 'Nanum Gothic Coding', sans-serif;">{{post.name}}</h3></a>
-    글쓴이: {{post.writer}} 
-</div>
-{%endfor%}
+<section class="service-wrapper py-3">
+    <div class="service-tag py-5 bg-secondary">
+        <div class="col-md-12">
+            <ul class="nav d-flex justify-content-center">
+                <li class="nav-item mx-lg-4">
+                    <a class="filter-btn nav-link btn-outline-primary active shadow rounded-pill text-light px-4 light-300" href="#" data-filter=".project">All</a>
+                </li>
+                <li class="nav-item mx-lg-4">
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".graphic">어학</a>
+                </li>
+                <li class="filter-btn nav-item mx-lg-4">
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".ui">전공</a>
+                </li>
+                <li class="nav-item mx-lg-4">
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".branding">자격증</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 </section>
-{% endblock %}
 
+<section class="container overflow-hidden py-5">
+    <div class="row gx-5 gx-sm-3 gx-lg-5 gy-lg-5 gy-3 pb-3 projects">
+
+            {%for post in posts%}
+                <div class="col-xl-3 col-md-4 col-sm-6 project ui branding">
+                    <a href="{%url 'study:detail' post.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                        <!-- 배경이미지 -->
+                        <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
+
+                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+
+                            <div class="service-work-content text-left text-light">
+                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{post.section}}</span>
+                                <p class="card-text">{{post.intro}}/p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- <a href="{%url 'study:detail' post.id%}"><h3 style="font-family: 'Nanum Gothic Coding', sans-serif;">{{post.name}}</h3></a> -->
+            {%endfor%}
+
+        <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                <img class="card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
+                <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                    <div class="service-work-content text-left text-light">
+                        <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">토익 900점 뿌시기</span>
+                        <p class="card-text">토익 900점 달성을 위한 스터디입니다.</p>
+                    </div>
+                </div>
+            </a>
+        </div><!-- End Recent Work -->
+
+        <div class="col-xl-3 col-md-4 col-sm-6 project branding">
+            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
+                <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                    <div class="service-work-content text-left text-light">
+                        <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">통계학개론 스터디</span>
+                        <p class="card-text">통계학개론 전공 공부를 위한 스터디입니다.</p>
+                    </div>
+                </div>
+            </a>
+        </div><!-- End Recent Work -->
+
+        <!-- Start Recent Work -->
+        <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+            <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                <img class="card-img" src="{% static 'img/services-04.jpg' %}" alt="Card image">
+                <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                    <div class="service-work-content text-left text-light">
+                        <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">정보처리기사 스터디</span>
+                        <p class="card-text">정보처리기사 자격증 대비 스터디입니다.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+       
+
+    </div>
+</section>
+{% endblock %}
