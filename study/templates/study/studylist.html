@@ -10,14 +10,17 @@
                     <a class="filter-btn nav-link btn-outline-primary active shadow rounded-pill text-light px-4 light-300" href="#" data-filter=".project">All</a>
                 </li>
                 <li class="nav-item mx-lg-4">
-                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".graphic">어학</a>
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".어학">어학</a>
                 </li>
                 <li class="filter-btn nav-item mx-lg-4">
-                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".ui">전공</a>
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".취업">전공</a>
                 </li>
                 <li class="nav-item mx-lg-4">
-                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".branding">자격증</a>
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".자격증">자격증</a>
                 </li>
+                <li class="nav-item mx-lg-4">
+                    <a class="filter-btn nav-link btn-outline-primary rounded-pill text-light px-4 light-300" href="#" data-filter=".코딩테스트">코딩테스트</a>
+                </li
             </ul>
         </div>
     </div>
@@ -28,11 +31,11 @@
     <div class="row gx-5 gx-sm-3 gx-lg-5 gy-lg-5 gy-3 pb-3 projects">
 
             {%for post in posts%}
-                <div class="col-xl-3 col-md-4 col-sm-6 project ui branding">
+                <div class="col-xl-3 col-md-4 col-sm-6 project ui branding {{post.section}}">
                     <a href="{%url 'study:detail' post.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
                         <!-- 배경이미지 -->
+                        <!-- if문써서 카테고리별 배경이미지 변경가능하게 수정해야함. -->
                         <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
-
                         <div class="service-work-vertical card-img-overlay d-flex align-items-end">
 
                             <div class="service-work-content text-left text-light">
