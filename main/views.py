@@ -95,8 +95,18 @@ def delete_comment(request,comment_id):
 
 def diary_detail(request,id):
     diary = get_object_or_404(Diary, pk = id)
-    return render(request, 'diary_detail.html',{'diary':diary})
+    return render(request, 'main/diary_detail.html',{'diary':diary})
 
 def diary_new(request):
     return render(request, 'main/diary_new.html')
+
+def diary_create(request):
+    new_diary = Diary()
+    new_diary.title = request.POST['title']
+    new_diary.writer = request.POST['writer']
+    new_diary.date = request.POST['date']
+    new_diary.pub_date = timezone.now()
+    new_diary.body = request.POST['body']
+    new_diary.save()
+    return redirect('main:diary_detail', new_diary.id)
 
