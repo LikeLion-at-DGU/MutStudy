@@ -41,14 +41,64 @@ button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #aaabaf;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
 
+
+.box select {
+  background-color: #435ac0;
+  color: white;
+  padding: 3px;
+  width: 120px;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
 </style>
 <section style="margin: 20px;">
     <form action="{%url 'study:create'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <p>스터디명 : <input type="text" name="name" required></p>
         <hr/>
-        <p>스터디 분야: 
+         
+            <div class= "box">
+                <p>스터디 분야:
             <select name="section">
                 <option value="어학">어학</option>
                 <option value="자격증">자격증</option>
@@ -56,6 +106,7 @@ button:hover:before,button:hover:after{
                 <option value="코딩테스트">코딩테스트</option>
                 <option value="취업">취업</option>
             </select>
+        </div>
         </p>
         <p>스터디 한줄 소개:  <input type="text" name="intro" required></p>
         <p>모집 대상: <input type="text" name="qualification" required></p>
