@@ -24,4 +24,5 @@ urlpatterns = [
     path('<str:comment_id>/delete_comment',delete_comment,name='delete_comment'),
     path('<int:id>',diary_detail, name='diary_detail'),
     path('diary_new/', diary_new, name='diary_new'),
+    path('diary_create/', diary_create, name="diary_create"),
 ]

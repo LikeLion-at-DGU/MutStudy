@@ -45,52 +45,53 @@
 
             <!-- Start Contact Form -->
             <div class="col-lg-8 ">
-                <form class="contact-form row" method="post" action="#" role="form">
+                <form class="contact-form row" method="post" action="{%url 'main:diary_create'%}" role="form">
+                    {%csrf_token%}
 
                     <div class="col-lg-6 mb-4">
                         <div class="form-floating">
-                            <input type="text" class="form-control form-control-lg light-300" id="floatingname" name="inputname" placeholder="Name">
+                            <input type="text" class="form-control form-control-lg light-300" id="floatingname" name="title" placeholder="제목">
                             <label for="floatingname light-300">제목</label>
                         </div>
                     </div><!-- End Input Name -->
 
                     <div class="col-lg-6 mb-4">
                         <div class="form-floating">
-                            <input type="text" class="form-control form-control-lg light-300" id="floatingemail" name="inputemail" placeholder="Email">
-                            <label for="floatingemail light-300">Email</label>
+                            <input type="text" class="form-control form-control-lg light-300" id="floatingemail" name="writer" placeholder="작성자">
+                            <label for="floatingemail light-300">작성자</label>
                         </div>
                     </div><!-- End Input Email -->
 
                     <div class="col-lg-6 mb-4">
                         <div class="form-floating">
-                            <input type="text" class="form-control form-control-lg light-300" id="floatingphone" name="inputphone" placeholder="Phone">
+                            <input type="text" class="form-control form-control-lg light-300" id="floatingphone" name="date" placeholder="작성날짜">
                             <label for="floatingphone light-300">Phone</label>
                         </div>
                     </div><!-- End Input Phone -->
 
-                    <div class="col-lg-6 mb-4">
+                    <!-- <div class="col-lg-6 mb-4">
                         <div class="form-floating">
                             <input type="text" class="form-control form-control-lg light-300" id="floatingcompany" name="inputcompany" placeholder="Company Name">
                             <label for="floatingcompany light-300">Company Name</label>
                         </div>
-                    </div><!-- End Input Company Name -->
+                    </div>
 
                     <div class="col-12">
                         <div class="form-floating mb-4">
                             <input type="text" class="form-control form-control-lg light-300" id="floatingsubject" name="inputsubject" placeholder="Subject">
                             <label for="floatingsubject light-300">Subject</label>
                         </div>
-                    </div><!-- End Input Subject -->
+                    </div> -->
 
                     <div class="col-12">
                         <div class="form-floating mb-3">
-                            <textarea class="form-control light-300" rows="8" placeholder="Message" id="floatingtextarea"></textarea>
-                            <label for="floatingtextarea light-300">Message</label>
+                            <textarea class="form-control light-300" rows="8" placeholder="내용" id="floatingtextarea" name="body"></textarea>
+                            <label for="floatingtextarea light-300">내용</label>
                         </div>
                     </div><!-- End Textarea Message -->
 
                     <div class="col-md-12 col-12 m-auto text-end">
-                        <button type="submit" class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300">Send Message</button>
+                        <button type="submit" class="btn btn-secondary rounded-pill px-md-5 px-4 py-2 radius-0 text-light light-300">작성완료</button>
                     </div>
 
                 </form>
