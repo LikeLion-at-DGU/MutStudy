@@ -2,8 +2,55 @@
 {% load static %}
 
 {% block content %}
+<style>
+    .postImage{
+        width: 300px;
+    }
+    .end_a
+    {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+    button{
+      background:#435ac0;
+      color:#fff;
+      border:none;
+      position:relative;
+      height:60px;
+      font-size:1.6em;
+      padding:0 2em;
+      cursor:pointer;
+      transition:800ms ease all;
+      outline:none;
+    }
+    button:hover{
+      background:rgb(160, 174, 255);
+      color:#435ac0;
+    }
+    button:before,button:after{
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #435ac0;
+      transition:400ms ease all;
+    }
+    button:after{
+      right:inherit;
+      top:inherit;
+      left:0;
+      bottom:0;
+    }
+    button:hover:before,button:hover:after{
+      width:100%;
+      transition:800ms ease all;
+    }
+</style>
 <section style="margin: 20px; margin-left: 35px;">
     <h1>스터디명 : {{post.name}}</h1>
+    <hr>
     작성자: <a href="{% url 'mypage:mypage' post.writer.id %}">{{post.writer}}</a><br>
     스터디 분야: {{post.section}}<br>
     한줄 소개: {{post.intro}}<br>
@@ -14,7 +61,7 @@
     스터디 난이도: {{post.difficulty}}<br>
     스터디장 번호: {{post.phnum}}<br>
     {%if post.image%}
-        관련 이미지: <img src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
+        관련 이미지: <img class="postImage" src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
     {%endif%}
     {%if not post.is_over%}
     <!-- 글 작성자가 마감하기 전이라면 -->
@@ -51,8 +98,10 @@
     {%endif%}
     {%if request.user in post.study_member.all%}
     <!-- 접속자가 스터디에 가입 완료돼있으면 -->
+    <hr>
         현재 가입 멤버들:
         {%for member in post.study_member.all%}
+
         <a href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
         {%endfor%}
     {%endif%}
@@ -61,9 +110,10 @@
     <!-- 접속자가 글 작성자라면 -->
         {%if not post.is_over%}
         <!-- 마감하기 전 글이라면 -->
-            <a href="{% url 'study:edit' post.id %}">수정하기</a>
-            <a href="{% url 'study:delete' post.id %}">삭제하기</a>
-            <a href="{% url 'study:recruit_over' post.id%}">마감하기</a>
+        <hr>
+            <button><a class="end_a" href="{% url 'study:edit' post.id %}">수정하기</a></button>
+            <button><a class="end_a" href="{% url 'study:delete' post.id %}">삭제하기</a></button>
+            <button><a class="end_a" href="{% url 'study:recruit_over' post.id%}">마감하기</a></button>
         {%endif%}
     {%endif%}
 </section>
