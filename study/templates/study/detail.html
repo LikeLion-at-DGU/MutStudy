@@ -52,6 +52,7 @@
     <h1>스터디명 : {{post.name}}</h1>
     <hr>
     작성자: <a href="{% url 'mypage:mypage' post.writer.id %}">{{post.writer}}</a><br>
+    <hr>
     스터디 분야: {{post.section}}<br>
     한줄 소개: {{post.intro}}<br>
     모집 대상: {{post.qualification}}<br>
@@ -93,7 +94,7 @@
                 <a href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
             {%endif%}
         {%endif%}
-    {%else%}
+    {%else%}<hr>
         <h1>마감!!!!!!!!!</h1>
     {%endif%}
     {%if request.user in post.study_member.all%}
