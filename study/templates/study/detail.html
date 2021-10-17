@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<section>
+<section style="margin: 20px; margin-left: 35px;">
     <h1>스터디명 : {{post.name}}</h1>
     작성자: <a href="{% url 'mypage:mypage' post.writer.id %}">{{post.writer}}</a><br>
     스터디 분야: {{post.section}}<br>
@@ -53,7 +53,7 @@
     <!-- 접속자가 스터디에 가입 완료돼있으면 -->
         현재 가입 멤버들:
         {%for member in post.study_member.all%}
-            {{member}}
+        <a href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
         {%endfor%}
     {%endif%}
     <br>
