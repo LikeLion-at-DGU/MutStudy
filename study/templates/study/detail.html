@@ -86,7 +86,6 @@
     <br>
     <div class="bodyBox">
     <h5 style="display: inline;">작성자 :</h5> <a class="first_a" href="{% url 'mypage:mypage' post.writer.id %}" >{{post.writer}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <p style="margin: 6px 0px;"><h5 style="display: inline;"> 스터디장 연락처 :</h5> {{post.phnum}}<br></p>
     <!-- <p style="display: inline; float: right;">스터디장 연락처: {{post.phnum}}<br></p> -->
     <!-- 개인정보,,, -->
     <hr>
@@ -141,12 +140,14 @@
     {%if request.user in post.study_member.all%}
     <!-- 접속자가 스터디에 가입 완료돼있으면 -->
     <hr>
+    <!-- <h5 style="display: inline;"></h5> -->
         현재 가입 멤버들:
         {%for member in post.study_member.all%}
 
         <a class ="first_a" href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
-        {%endfor%}
-        <p >활동 기간: {{post.start_date}} ~ {{post.due_date}}</p>
+        {%endfor%}<br>
+        활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
+        스터디장 연락처 : {{post.phnum}}
     {%endif%}
     {%if is_author%}
     <!-- 접속자가 글 작성자라면 -->
