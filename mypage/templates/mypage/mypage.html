@@ -3,6 +3,15 @@
 
 {% block content %}
 <style>
+      .first_a{
+        border: 2px solid none;
+        background-color: rgb(158, 189, 255);
+        padding: 4px 7px;        
+        border-radius: 10px;
+        text-decoration: none;
+        color: whitesmoke;
+
+    }
   .my_title{
     font-weight: 600;
   }
@@ -163,7 +172,9 @@ main {
   cursor: pointer;
   max-width: 100%;
 }
-
+a:hover{
+        color: black;
+    }
 </style>
 
 
@@ -202,7 +213,7 @@ main {
                   {% if request.user.profile in user.profile.followers.all %}
                       <a href="{%url 'mypage:follow' user.id %}"><button type="button" class="btn btn-default"  style="background-color:rgb(80, 99, 185); color: whitesmoke;">언팔로우</button></a>
                   {% else %}
-                    <a href="{%url 'mypage:follow' user.id %} " ><button type="button" class="btn btn-default"  style="background-color:rgb(80, 99, 185); color: whitesmoke;">팔로우</button></a> {% endif %}
+                    <a  href="{%url 'mypage:follow' user.id %} " ><button type="button" class="btn btn-default"  style="background-color:rgb(80, 99, 185); color: whitesmoke;">팔로우</button></a> {% endif %}
                 {% endif %}
               </div>
 
@@ -210,11 +221,11 @@ main {
                     <div class="follows">
                       <p style="color: rgba(0, 0, 0, 0.712); font-weight: 500;">follower: {{user.profile.followers.count}}</p> 
                       {%for follower in user.profile.followers.all %}
-                        <a href="{% url 'mypage:mypage' follower.user.id %}">{{follower.user.username}}</a> 
+                        <a class="first_a" href="{% url 'mypage:mypage' follower.user.id %}">{{follower.user.username}}</a> 
                       {% endfor %}
                         <p style="color: rgba(0, 0, 0, 0.712); font-weight: 500;">following: {{user.profile.followings.count}}</p>
                       {% for following in user.profile.followings.all %}
-                        <a href="{%url 'mypage:mypage' following.user.id%}">{{following.user.username}}</a>
+                        <a class="first_a" href="{%url 'mypage:mypage' following.user.id%}">{{following.user.username}}</a>
                       {% endfor %}
                     </div>
                     {% if request.user == user %}
