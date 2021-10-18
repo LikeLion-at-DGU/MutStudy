@@ -3,6 +3,7 @@
 
 {% block content %}
 <style>
+
     /* h1 {
   padding: 0.7rem;
   border-left: 5px solid rgb(113, 127, 247);
@@ -67,7 +68,7 @@
       transition:800ms ease all;
     }
     .titleBox{
-        border-radius: 5em; 
+        border-radius: 1em; 
         padding: 0.6em 1em; 
         background: #ffffff; 
         box-shadow: 1px 2px 10px rgba(0,0,0,0.2);  
@@ -109,29 +110,38 @@
         {%if is_author%}
         <!-- 접속자가 글 작성자라면 -->
             {%if post.study_member_request%}
+            <br>
             <!-- 그리고 혹시 지금 스터디 지원한 사람이 있다면 -->
+            <h3>&nbsp;&nbsp;지원자</h3>
                 {%for member in post.study_member_request.all%}
                 <!-- 지원한 사람 for문으로 꺼내고 수락 / 거절 -->
-                    {{member}}
-                    <a href="{% url 'study:accept_request' post.id member.id %}">수락</a>
-                    <a href="{% url 'study:refuse_request' post.id member.id %}">거절</a><br>
+                
+                &nbsp;&nbsp;&nbsp;{{member}}
+                    <a class="first_a" style="background-color: rgb(182, 182, 182);"href="{% url 'study:accept_request' post.id member.id %}">수락</a>
+                    <a class="first_a" style="background-color: rgb(182, 182, 182);"href="{% url 'study:refuse_request' post.id member.id %}">거절</a>
+                    <br><br>
+                
                 {%endfor%}
             {%else%}
             <!-- 지원한 사람이 없다면 -->
-                <strong>지원자 아직 없음!</strong><br>
+            <br>
+            &nbsp;&nbsp;&nbsp;<strong>지원자 아직 없음!</strong><br>
             {%endif%}
         {%else%}
         <!-- 접속자가 글 작성자가 아니라면 -->
             {%if request.user in post.study_member.all%}
             <!-- 접속자가 스터디에 가입돼 있으면 -->
-                <strong>해당 스터디에 가입돼 있습니다!</strong>
+            <br>
+            &nbsp;&nbsp;&nbsp;<strong>해당 스터디에 가입돼 있습니다!</strong>
             {%elif request.user in post.study_member_request.all%}
             <!-- 접속자가 스터디에 가입 신청을 넣은 상태라면 -->
-                <strong>승인 대기 중입니다.</strong>
-                <a href="{% url 'study:apply_study' post.id %}">지원취소</a><br>
+            <br>
+            &nbsp;&nbsp;&nbsp; <strong>승인 대기 중입니다.</strong>
+                <a class="first_a" href="{% url 'study:apply_study' post.id %}" style="background-color: rgb(182, 182, 182);">지원취소</a><br>
             {%elif request.user.is_authenticated %}
             <!-- 어느 케이스에도 해당 안되고 로그인이 돼 있다면 -->
-                <a href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
+            <br>
+                &nbsp;&nbsp;&nbsp;<a class="first_a" style="background-color: rgb(182, 182, 182);"href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
             {%endif%}
         {%endif%}
     {%else%}<hr>
