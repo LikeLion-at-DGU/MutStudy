@@ -61,21 +61,20 @@
       transition:800ms ease all;
     }
 </style>
-<section style="margin: 20px; margin-left: 35px;">
-    <h1>스터디명 : {{post.name}}</h1>
+<section style="margin: 20px; margin-left: 35px; margin-top: 30px;">
+    <h1>스터디명 : {{post.name}}</h1>활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
     <hr>
     작성자: <a class="first_a" href="{% url 'mypage:mypage' post.writer.id %}" >{{post.writer}}</a>
-    <p style="display: inline; float: right;">스터디장 번호: {{post.phnum}}<br></p>
+    <p style="display: inline; float: right;">스터디장 연락처: {{post.phnum}}<br></p>
+    <!-- 개인정보,,, -->
     <hr>
     스터디 분야: {{post.section}}<br>
     모집 대상: {{post.qualification}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  스터디 모집 인원: {{post.member_start}} ~ {{post.member_end}}<br>
     <hr>
     한줄 소개: {{post.intro}}<br>
-
-    활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
-    스터디 정보: {{post.body}}<br>
     스터디 난이도: {{post.difficulty}}<br>
-    
+    <hr>
+    스터디 정보: {{post.body}}<br>
     {%if post.image%}
         관련 이미지: <img class="postImage" src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
     {%endif%}
