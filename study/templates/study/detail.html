@@ -3,9 +3,22 @@
 
 {% block content %}
 <style>
+    .first_a{
+        border: 2px solid none;
+        background-color: rgb(113, 127, 247);
+        padding: 4px 7px;        
+        border-radius: 10px;
+        text-decoration: none;
+        color: whitesmoke;
+
+    }
+    a:hover{
+        color: black;
+    }
     .postImage{
         width: 300px;
     }
+
     .end_a
     {
         text-decoration: none;
@@ -16,9 +29,9 @@
       color:#fff;
       border:none;
       position:relative;
-      height:60px;
-      font-size:1.6em;
-      padding:0 2em;
+      height:40px;
+      font-size:1em;
+      padding:0 20px;
       cursor:pointer;
       transition:800ms ease all;
       outline:none;
@@ -51,16 +64,18 @@
 <section style="margin: 20px; margin-left: 35px;">
     <h1>스터디명 : {{post.name}}</h1>
     <hr>
-    작성자: <a href="{% url 'mypage:mypage' post.writer.id %}">{{post.writer}}</a><br>
+    작성자: <a class="first_a" href="{% url 'mypage:mypage' post.writer.id %}" >{{post.writer}}</a>
+    <p style="display: inline; float: right;">스터디장 번호: {{post.phnum}}<br></p>
     <hr>
     스터디 분야: {{post.section}}<br>
+    모집 대상: {{post.qualification}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  스터디 모집 인원: {{post.member_start}} ~ {{post.member_end}}<br>
+    <hr>
     한줄 소개: {{post.intro}}<br>
-    모집 대상: {{post.qualification}}<br>
-    스터디 모집 인원: {{post.member_start}} ~ {{post.member_end}}<br>
+
     활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
     스터디 정보: {{post.body}}<br>
     스터디 난이도: {{post.difficulty}}<br>
-    스터디장 번호: {{post.phnum}}<br>
+    
     {%if post.image%}
         관련 이미지: <img class="postImage" src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
     {%endif%}
@@ -103,7 +118,7 @@
         현재 가입 멤버들:
         {%for member in post.study_member.all%}
 
-        <a href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
+        <a class ="first_a" href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
         {%endfor%}
     {%endif%}
     <br>
