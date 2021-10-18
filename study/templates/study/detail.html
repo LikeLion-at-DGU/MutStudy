@@ -3,9 +3,28 @@
 
 {% block content %}
 <style>
+    /* h1 {
+  padding: 0.7rem;
+  border-left: 5px solid rgb(113, 127, 247);
+  background: #dee3ff;
+} */
+    .first_a{
+        border: 2px solid none;
+        background-color: rgb(113, 127, 247);
+        padding: 4px 7px;        
+        border-radius: 10px;
+        text-decoration: none;
+        color: whitesmoke;
+
+    }
+    a:hover{
+        color: black;
+    }
     .postImage{
         width: 300px;
+        border-radius: 20px;
     }
+
     .end_a
     {
         text-decoration: none;
@@ -16,9 +35,9 @@
       color:#fff;
       border:none;
       position:relative;
-      height:60px;
-      font-size:1.6em;
-      padding:0 2em;
+      height:40px;
+      font-size:1em;
+      padding:0 20px;
       cursor:pointer;
       transition:800ms ease all;
       outline:none;
@@ -47,23 +66,44 @@
       width:100%;
       transition:800ms ease all;
     }
+    .titleBox{
+        border-radius: 5em; 
+        padding: 0.6em 1em; 
+        background: #ffffff; 
+        box-shadow: 1px 2px 10px rgba(0,0,0,0.2);  
+        margin-left: 5px;
+    }
+    .bodyBox{
+        border-radius: 1em; 
+        padding: 0.8em 1em; 
+        background: #ffffff; 
+        box-shadow: 1px 2px 10px rgba(0,0,0,0.2);  
+        margin-left: 5px;
+    }
 </style>
-<section style="margin: 20px; margin-left: 35px;">
-    <h1>스터디명 : {{post.name}}</h1>
+<section style="margin: 20px; margin-left: 35px; margin-top: 30px;">
+    <h1 class="titleBox">스터디명 : {{post.name}}</h1>
+    <br>
+    <div class="bodyBox">
+    <h5 style="display: inline;">작성자 :</h5> <a class="first_a" href="{% url 'mypage:mypage' post.writer.id %}" >{{post.writer}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- <p style="display: inline; float: right;">스터디장 연락처: {{post.phnum}}<br></p> -->
+    <!-- 개인정보,,, -->
     <hr>
-    작성자: <a href="{% url 'mypage:mypage' post.writer.id %}">{{post.writer}}</a><br>
+    <h5 style="display: inline;">스터디 분야 :</h5> {{post.section}}<br>
+    <h5 style="display: inline;">모집 대상:</h5> {{post.qualification}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <h5 style="display: inline;">스터디 모집 인원 : </h5>{{post.member_start}} ~ {{post.member_end}}<br>
     <hr>
-    스터디 분야: {{post.section}}<br>
-    한줄 소개: {{post.intro}}<br>
-    모집 대상: {{post.qualification}}<br>
-    스터디 모집 인원: {{post.member_start}} ~ {{post.member_end}}<br>
-    활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
-    스터디 정보: {{post.body}}<br>
-    스터디 난이도: {{post.difficulty}}<br>
-    스터디장 번호: {{post.phnum}}<br>
-    {%if post.image%}
-        관련 이미지: <img class="postImage" src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
+    <h5 style="display: inline;">한줄 소개 :</h5> {{post.intro}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h5 style="display: inline;"> 스터디 난이도 : </h5>{{post.difficulty}}<br>
+    <hr>
+
+    <div class="bodyBox">
+        <h3>스터디 정보</h3> {{post.body}}
+        <br><br>
+        {%if post.image%}
+        <h3>관련 이미지</h3> 
+        <img class="postImage" src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
     {%endif%}
+    </div>
+    
     {%if not post.is_over%}
     <!-- 글 작성자가 마감하기 전이라면 -->
         {%if is_author%}
@@ -95,23 +135,28 @@
             {%endif%}
         {%endif%}
     {%else%}<hr>
-        <h1>마감!!!!!!!!!</h1>
+    <div style="text-align: center;">
+        <h1>- 마감 -</h1>
+    </div>
     {%endif%}
     {%if request.user in post.study_member.all%}
     <!-- 접속자가 스터디에 가입 완료돼있으면 -->
     <hr>
+    <!-- <h5 style="display: inline;"></h5> -->
         현재 가입 멤버들:
         {%for member in post.study_member.all%}
 
-        <a href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
-        {%endfor%}
+        <a class ="first_a" href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
+        {%endfor%}<br>
+        활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
+        스터디장 연락처 : {{post.phnum}}
     {%endif%}
-    <br>
     {%if is_author%}
     <!-- 접속자가 글 작성자라면 -->
         {%if not post.is_over%}
         <!-- 마감하기 전 글이라면 -->
-        <hr>
+    </div>
+    <br>
             <button><a class="end_a" href="{% url 'study:edit' post.id %}">수정하기</a></button>
             <button><a class="end_a" href="{% url 'study:delete' post.id %}">삭제하기</a></button>
             <button><a class="end_a" href="{% url 'study:recruit_over' post.id%}">마감하기</a></button>
