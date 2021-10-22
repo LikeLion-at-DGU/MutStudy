@@ -107,6 +107,7 @@ def diary_create(request):
     new_diary.date = request.POST['date']
     new_diary.pub_date = timezone.now()
     new_diary.body = request.POST['body']
+    new_diary.image = request.FILES.get('image')
     new_diary.save()
     return redirect('main:diary_detail', new_diary.id)
 

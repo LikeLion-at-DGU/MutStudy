@@ -22,7 +22,7 @@ urlpatterns = [
     path('<str:comment_id>/edit_comment',edit_comment,name='edit_comment'),
     path('<str:comment_id>/update_comment',update_comment,name='update_comment'),
     path('<str:comment_id>/delete_comment',delete_comment,name='delete_comment'),
-    path('<int:id>',diary_detail, name='diary_detail'),
+    path('diary_detail/<int:id>',diary_detail, name='diary_detail'),
     path('diary_new/', diary_new, name='diary_new'),
     path('diary_create/', diary_create, name="diary_create"),
 ]
