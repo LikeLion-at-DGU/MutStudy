@@ -36,3 +36,8 @@ class Diary(models.Model):
 
     def summary(self):
         return self.body[:20]
+
+class StudyDate(models.Model):
+    id = models.AutoField(primary_key=True)
+    content = models.TextField()
+    pub_date = models.DateTimeField()

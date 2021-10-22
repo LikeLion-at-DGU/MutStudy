@@ -25,4 +25,5 @@ urlpatterns = [
     path('diary_detail/<int:id>',diary_detail, name='diary_detail'),
     path('diary_new/', diary_new, name='diary_new'),
     path('diary_create/', diary_create, name="diary_create"),
+    path('studydate_create/', studydate_create, name="studydate_create"),
 ]

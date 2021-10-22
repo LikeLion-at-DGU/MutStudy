@@ -395,7 +395,7 @@
                 </p>
             </div>
         </div><!-- End Blog Cover -->   
-
+        {% for date in all_dates%}
         <div class="row pb-4">
             <div class="worksingle-comment-body col-md-8 m-auto">
                 <div class="d-flex">
@@ -412,109 +412,28 @@
                         </div>
                         <div class="footer">
                             <div class="card-body border ms-3 light-300">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco.
+                                {{date.content}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div><!-- End Comment -->
+        {%endfor%}
 
-
-        <div class="row pb-4">
-            <div class="col-lg-8 m-auto">
-                <div class="d-flex">
-                    <div>
-                        <img class="rounded-circle" src="{% static 'img/team-01.jpg' %}" style="width: 50px;">
-                    </div>
-                    <div class="comment-body">
-                        <div class="comment-header d-flex justify-content-between ms-3">
-                            <div class="header text-start">
-                                <h5 class="h6">Jane Doe</h5>
-                                <p class="text-muted light-300">5 mins ago</p>
-                            </div>
-                            <a href="#" class="text-decoration-none text-secondary"><i class='bx bxs-share me-2'></i>Reply</a>
-                        </div>
-                        <div class="footer">
-                            <div class="card-body border ms-3 light-300">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Comment -->
-
-
-        <div class="row pb-4">
-            <div class="col-lg-8 m-auto">
-                <div class="d-flex ml-4">
-                    <div>
-                        <img class="rounded-circle" src="{% static 'img/team-05.jpg' %}" style="width: 50px;">
-                    </div>
-                    <div class="comment-body">
-                        <div class="comment-header d-flex justify-content-between ms-3">
-                            <div class="header text-start">
-                                <h5 class="h6">John Doe</h5>
-                                <p class="text-muted light-300">15 mins ago</p>
-                            </div>
-                            <a href="#" class="text-decoration-none text-secondary"><i class='bx bxs-share me-2'></i>Reply</a>
-                        </div>
-                        <div class="footer">
-                            <div class="card-body border ms-3 light-300">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Comment -->
-
-
-        <div class="row pb-4">
-            <div class="col-lg-8 m-auto">
-                <div class="d-flex ml-5">
-                    <div>
-                        <img class="rounded-circle" src="{% static 'img/team-01.jpg' %}" style="width: 50px;">
-                    </div>
-                    <div class="comment-body">
-                        <div class="comment-header d-flex justify-content-between ms-3">
-                            <div class="header text-start">
-                                <h5 class="h6">Jane Doe</h5>
-                                <p class="text-muted light-300">16 mins ago</p>
-                            </div>
-                            <a href="#" class="text-decoration-none text-secondary"><i class='bx bxs-share me-2'></i>Reply</a>
-                        </div>
-                        <div class="footer">
-                            <div class="card-body border ms-3 light-300">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End Comment -->
 
 
         <div class="row pb-4">
             <div class="worksingle-comment-footer col-lg-8 m-auto">
-                <h4 class="h5">Leave Comment</h4>
-                <form class="col-md-12 m-auto" method="POST" action="#" role="form">
-
+                <h4 class="h5">스터디 일정 작성하기</h4>
+                <form class="col-md-12 m-auto" method="POST" action="{% url 'main:studydate_create' %}" role="form">
+                    {%csrf_token%}
                     <div class="form-group">
-                        <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputmessage">Your Comment</label>
-                        <textarea class="form-control form-control-lg light-300" id="inputmessage" name="inputmessage" placeholder="Your Comment" rows="5"></textarea>
+                        <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputmessage">일정을 작성하세요</label>
+                        <textarea class="form-control form-control-lg light-300" id="inputmessage" name="content" placeholder="Your Comment" rows="5"></textarea>
                     </div>
 
-                    <div class="row py-4">
+                    <!-- <div class="row py-4">
                         <div class="col-lg-6">
                             <label class="pb-2 light-300" for="inputname">Name</label>
                             <input type="text" class="form-control form-control-lg light-300" id="inputname" name="inputname" placeholder="Name">
@@ -523,7 +442,7 @@
                             <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputemail">Email</label>
                             <input type="email" class="form-control form-control-lg light-300" id="inputemail" name="inputemail" placeholder="Email">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-row pt-2">
                         <div class="col-md-12 col-10 text-end">
@@ -554,20 +473,15 @@
                         <!-- 일지목록 -->
                         {% for diary in diarys %}
                         <div class="col-sm-6 col-lg-4 mb-5">
-                            <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
+                            <a href="{%url 'main:diary_detail' diary.id%}" class="related-content card text-decoration-none overflow-hidden h-100">
                                 <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
                                 <div class="related-body card-body p-4">
-                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">{{diary.title}}</h5>
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">제목 : {{diary.title}}</h5>
                                     <p class="card-text pt-2 mb-1 light-300 text-dark">
-                                        {{diary.date}}
+                                        날짜 : {{diary.date}}
                                     </p>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="text-primary light-300"><a href="{%url 'diary_detail' diary.id%}">Read more</a></span>
-                                        <div class="light-300">
-                                            <i class='bx-fw bx bx-heart me-1'></i>5
-                                            <i class='bx-fw bx bx-chat    ms-1 me-1'></i>3
-                                        </div>
-                                    </div>
+                                    <br>
+                                    <p>자세히</p>
                                 </div>
                             </a>
                         </div>
