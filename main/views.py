@@ -24,7 +24,8 @@ def work(request):
 
 def studying(request):
     diarys = Diary.objects.all()
-    return render(request, 'main/studying.html', {'diarys':diarys})
+    all_dates = StudyDate.objects.all()
+    return render(request, 'main/studying.html', {'diarys':diarys, 'all_dates':all_dates})
 
 def plan(request):
     plans = Plan.objects.all()
@@ -111,3 +112,9 @@ def diary_create(request):
     new_diary.save()
     return redirect('main:diary_detail', new_diary.id)
 
+def studydate_create(request):
+    new_date = StudyDate()
+    new_date.content = request.POST['content']
+    new_date.pub_date = timezone.now()
+    new_date.save()
+    return redirect('main:studying')
