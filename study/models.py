@@ -48,3 +48,7 @@ class check(models.Model):
     date = models.DateTimeField()
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='checks')
+
+class notion(models.Model):
+    content = models.TextField()
+    post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='notions')
