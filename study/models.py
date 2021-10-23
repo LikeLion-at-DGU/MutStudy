@@ -37,8 +37,14 @@ class member(models.Model):
     study = models.ForeignKey(study, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
+# 스터디 일정
 class todo(models.Model):
     date = models.DateField()
     content = models.TextField()
     post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='todos')
+
+#스터디 출석체크
+class check(models.Model):
+    date = models.DateTimeField()
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='checks')
