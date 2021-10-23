@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import study, todo
+from .models import check, study, todo
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your views here.
 def studylist(request):
@@ -75,13 +76,14 @@ def recruit_over(request, id):
 def detail(request, id):
     post = get_object_or_404(study, pk=id)
     todos = post.todos.all()
+    checks = post.checks.all()
     # is_author : 현재 접속한 유저가 수정하려는 스터디의 작성자인지 확인하고 저장
     if request.user == post.writer:
         is_author = True
     else:
         is_author = False
 
-    return render(request, "study/detail.html", {"post": post, "is_author": is_author, "todos": todos})
+    return render(request, "study/detail.html", {"post": post, "is_author": is_author, "todos": todos, "checks": checks})
 
 
 def edit(request, id):
@@ -131,4 +133,12 @@ def create_todo(request, study_id):
     new_todo.content = request.POST['todo_content']
     new_todo.post = get_object_or_404(study, pk = study_id)
     new_todo.save()
+    return redirect('study:detail', study_id)
+
+def create_check(request, study_id):
+    new_check = check()
+    new_check.date = timezone.now()
+    new_check.writer = request.user
+    new_check.post = get_object_or_404(study, pk = study_id)
+    new_check.save()
     return redirect('study:detail', study_id)

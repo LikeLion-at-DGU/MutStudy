@@ -241,12 +241,18 @@
                         <!--First slide-->
                         <div class="carousel-item active">
                             <div class="row">
+                                {% for check in checks %}
                                 <div class="col">
-                                    <a class="templatemo-slide-link" href="{% static 'img/work-slide-06.jpg' %}">
+                                    <!-- <a class="templatemo-slide-link" href="{% static 'img/work-slide-06.jpg' %}">
                                         <img class="img-fluid border rounded" src="{% static 'img/work-slide-06-small.jpg' %}" alt="Product Image">
-                                    </a>
+                                    </a> -->
+                                    <p>{{check.date}}</p>
+                                    <p>{{check.writer}}</p>
+                                    <p>출석완료</p>
+
                                 </div>
-                                <div class="col">
+                                {% endfor %}
+                                <!-- <div class="col">
                                     <a class="templatemo-slide-link" href="{% static 'img/work-slide-05.jpg' %}">
                                         <img class="img-fluid border rounded" src="{% static 'img/work-slide-05.jpg-small.jpg' %}" alt="Product Image">
                                     </a>
@@ -265,13 +271,13 @@
                                     <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
                                         <img class="img-fluid border rounded" src="{% static 'img/work-slide-01-small.jpg' %}g" alt="Product Image">
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!--/.First slide-->
 
                         <!--Second slide-->
-                        <div class="carousel-item">
+                        <!-- <div class="carousel-item">
                             <div class="row">
                                 <div class="col">
                                     <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
@@ -299,11 +305,11 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!--/.Second slide-->
 
                         <!--Second slide-->
-                        <div class="carousel-item">
+                        <!-- <div class="carousel-item">
                             <div class="row">
                                 <div class="col">
                                     <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
@@ -331,7 +337,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!--/.Second slide-->
 
                     </div>
@@ -348,8 +354,18 @@
                 <!--End Controls-->
 
             </div>
+            <br><br>
+            <form class="col-md-12 m-auto" method="POST" action="{%url 'study:create_check' post.id%}" role="form">
+                {%csrf_token%}
+                <div class="form-row pt-2">
+                    <div class="col-md-12 col-10 text-end">
+                        <button type="submit" class="end_a">출석체크</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div><!-- End Slider -->
+    
     <br><br>
     <!-- Start Comment -->
     <div class="row justify-content-center">
@@ -407,7 +423,7 @@
 
                 <div class="form-row pt-2">
                     <div class="col-md-12 col-10 text-end">
-                        <button type="submit" class="btn btn-secondary text-white px-md-4 px-2 py-md-3 py-1 radius-0 light-300">작성완료</button>
+                        <button type="submit" class="end_a">작성완료</button>
                     </div>
                 </div>
             </form>
