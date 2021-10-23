@@ -189,22 +189,56 @@
                 <br><br>
                 <h5 class="h5 semi-bold-600 pb-4 light-300">공지사항</h5>
             </div>
-            <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+            <div class="pricing-horizontal-body offset-lg-1 col-md-7 col-lg-7 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+                {% for notion in notions %}
                 <ul class="text-left px-4 list-unstyled mb-0 light-300">
                     <!-- {% for notice in notices %}
                         <li><i class="bx bxs-circle me-2"></i>{{notice.content}}</li>
                     {%endfor%} -->
-                    <li><i class="bx bxs-circle me-2"></i>5 Users</li>
-                    <li><i class="bx bxs-circle me-2"></i>2 TB space</li>
-                    <li><i class="bx bxs-circle me-2"></i>Community Forums</li>
+                    <li>{{notion.content}}</li>
+                    {% comment %} <li><i class="bx bxs-circle me-2"></i>2 TB space</li>
+                    <li><i class="bx bxs-circle me-2"></i>Community Forums</li> {% endcomment %}
                 </ul>
+                {% endfor %}
             </div>
-            <div class="pricing-horizontal-tag col-md-4 text-center pt-3 d-flex align-items-center">
+            {% comment %} <div class="pricing-horizontal-tag col-md-4 text-center pt-3 d-flex align-items-center">
                 <div class="w-100 light-300">
                     
                     <a href="#" class="btn rounded-pill px-4 btn-outline-primary mb-3">작성 및 수정하기</a>
                 </div>
-            </div>
+            </div> {% endcomment %}
+
+            <br>
+            <div class="row pb-4">
+                <div class="worksingle-comment-footer col-lg-8 m-auto">
+                    <br>
+                    <form class="col-md-12 m-auto" method="POST" action="{%url 'study:create_notion' post.id%}" role="form">
+                        {%csrf_token%}
+                        <div class="form-group">
+                            <!-- <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputmessage">Your Comment</label> -->
+                            {% comment %} <input type="date" name="notion_date" required><br><br> {% endcomment %}
+                            <textarea class="form-control form-control-lg light-300" id="inputmessage" name="notion_content" placeholder="공지사항 등록" rows="3"></textarea>
+                        </div>
+
+                        <!-- <div class="row py-4">
+                            <div class="col-lg-6">
+                                <label class="pb-2 light-300" for="inputname">Name</label>
+                                <input type="text" class="form-control form-control-lg light-300" id="inputname" name="inputname" placeholder="Name">
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputemail">Email</label>
+                                <input type="email" class="form-control form-control-lg light-300" id="inputemail" name="inputemail" placeholder="Email">
+                            </div>
+                        </div> -->
+
+                        <div class="form-row pt-2">
+                            <div class="col-md-12 col-10 text-end">
+                                <button type="submit" class="end_a">작성완료</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- End Comment Form -->
         </div>
     </div>
 </section>
