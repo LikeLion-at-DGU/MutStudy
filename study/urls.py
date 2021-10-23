@@ -22,4 +22,5 @@ urlpatterns = [
         name="refuse_request",
     ),  # 스터디 가입 거절 동작
     path("over/<int:id>", recruit_over, name="recruit_over"),  # 스터디 마감으로 전환 동작
+    path("create_todo/<int:study_id>", create_todo, name="create_todo"),
 ]

@@ -36,3 +36,9 @@ class member_request(models.Model):
 class member(models.Model):
     study = models.ForeignKey(study, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class todo(models.Model):
+    date = models.DateField()
+    content = models.TextField()
+    post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='todos')
