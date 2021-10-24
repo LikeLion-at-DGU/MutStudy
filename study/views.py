@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import check, study, todo,notion
+from .models import check, study, todo, notion
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.views.generic import ListView
@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def studylist(request):
-    posts = study.objects.all()
+    posts = study.objects.filter(is_over=False)  # 마감 전 애들만 불러오기
     return render(request, "study/studylist.html", {"posts": posts})
 
 
@@ -80,9 +80,9 @@ def detail(request, id):
     todos = post.todos.all()
     checks = post.checks.all()
     # notions = post.notions.all()
-    notions_all= notion.objects.all().order_by('-id')
-    page = int(request.GET.get('p', 1)) #없으면 1로 지정
-    paginator = Paginator(notions_all, 5) 
+    notions_all = notion.objects.all().order_by("-id")
+    page = int(request.GET.get("p", 1))  # 없으면 1로 지정
+    paginator = Paginator(notions_all, 5)
     notions = paginator.get_page(page)
     # is_author : 현재 접속한 유저가 수정하려는 스터디의 작성자인지 확인하고 저장
     if request.user == post.writer:
@@ -90,7 +90,17 @@ def detail(request, id):
     else:
         is_author = False
 
-    return render(request, "study/detail.html", {"post": post, "is_author": is_author, "todos": todos, "checks": checks, "notions":notions})
+    return render(
+        request,
+        "study/detail.html",
+        {
+            "post": post,
+            "is_author": is_author,
+            "todos": todos,
+            "checks": checks,
+            "notions": notions,
+        },
+    )
 
 
 def edit(request, id):
@@ -134,25 +144,28 @@ def delete(request, id):
 
     return redirect("study:studylist")
 
+
 def create_todo(request, study_id):
     new_todo = todo()
-    new_todo.date = request.POST['todo_date']
-    new_todo.content = request.POST['todo_content']
-    new_todo.post = get_object_or_404(study, pk = study_id)
+    new_todo.date = request.POST["todo_date"]
+    new_todo.content = request.POST["todo_content"]
+    new_todo.post = get_object_or_404(study, pk=study_id)
     new_todo.save()
-    return redirect('study:detail', study_id)
+    return redirect("study:detail", study_id)
+
 
 def create_check(request, study_id):
     new_check = check()
     new_check.date = timezone.now()
     new_check.writer = request.user
-    new_check.post = get_object_or_404(study, pk = study_id)
+    new_check.post = get_object_or_404(study, pk=study_id)
     new_check.save()
-    return redirect('study:detail', study_id)
+    return redirect("study:detail", study_id)
+
 
 def create_notion(request, study_id):
     new_notion = notion()
-    new_notion.content = request.POST['notion_content']
-    new_notion.post = get_object_or_404(study, pk = study_id)
+    new_notion.content = request.POST["notion_content"]
+    new_notion.post = get_object_or_404(study, pk=study_id)
     new_notion.save()
-    return redirect('study:detail', study_id)
+    return redirect("study:detail", study_id)
