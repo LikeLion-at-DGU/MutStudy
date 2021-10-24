@@ -52,3 +52,19 @@ class check(models.Model):
 class notion(models.Model):
     content = models.TextField()
     post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='notions')
+
+class Daily(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    writer = models.CharField(max_length=200)
+    pub_date = models.DateTimeField()
+    body = models.TextField()
+    date = models.CharField(max_length=30)
+    image = models.ImageField(upload_to="daily/", blank = True, null = True)
+    post = models.ForeignKey(study, on_delete=models.CASCADE, related_name='dailys')
+
+    def __str__(self):
+        return self.title
+
+    def summary(self):
+        return self.body[:20]
