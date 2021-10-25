@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+from main.models import Diary
 from .models import check, study, todo, notion, Daily
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -173,16 +175,17 @@ def create_notion(request, study_id):
     return redirect("study:detail", study_id)
 
 def daily_detail(request,study_id,daily_id):
-    daily = get_object_or_404(Daily, pk = study_id)
-    return render(request, 'study/daily_detail.html',{'daily':daily})
+    post = get_object_or_404(study, pk=study_id)
+    daily = Diary.objects.get(id = daily_id)
+    return render(request, 'study/daily_detail.html',{'post':post, 'daily':daily})
 
-def daily_new(request,post_id):
-    daily = get_object_or_404(Daily, pk = post_id)
-    return render(request, 'study/daily_new.html',{'daily':daily})
+def daily_new(request,study_id):
+    post = get_object_or_404(study, pk = study_id)
+    return render(request, 'study/daily_new.html',{'post':post})
 
-def daily_create(request,post_id):
+def daily_create(request,study_id):
     new_daily = Daily()
-    new_daily.post = get_object_or_404(Daily,pk=post_id)
+    new_daily.post = get_object_or_404(study,pk=study_id)
     new_daily.title = request.POST['title']
     new_daily.writer = request.POST['writer']
     new_daily.date = request.POST['date']
@@ -190,4 +193,4 @@ def daily_create(request,post_id):
     new_daily.body = request.POST['body']
     new_daily.image = request.FILES.get('image')
     new_daily.save()
-    return redirect('study:daily_detail',post_id)
+    return redirect('study:detail',study_id)
