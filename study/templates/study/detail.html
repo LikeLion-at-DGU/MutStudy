@@ -192,7 +192,7 @@
             </div>
             <div class="pricing-horizontal-body offset-lg-1 col-md-7 col-lg-7 d-flex align-items-center pl-5 pt-lg-0 pt-4">
                 {% for notion in notions %}
-                -&nbsp{{notion.content}}<br>
+                    -&nbsp{{notion.content}}<br>
                 {% comment %} <ul class="text-left px-4 list-unstyled mb-0 light-300">
                     <li>{{notion.content}}</li>
                     <li><i class="bx bxs-circle me-2"></i>2 TB space</li>
@@ -275,7 +275,7 @@
                         <div class="carousel-item active">
                             <div class="row">
                                 {% for check in checks %}
-                                <div class="col">
+                                <div class="col" id="check">
                                     <!-- <a class="templatemo-slide-link" href="{% static 'img/work-slide-06.jpg' %}">
                                         <img class="img-fluid border rounded" src="{% static 'img/work-slide-06-small.jpg' %}" alt="Product Image">
                                     </a> -->
@@ -471,17 +471,16 @@
                 <h1 class="h2 py-5">스터디 일지</h1>
                 <div class="col-md-12 text-left justify-content-center">
                     <div class="row gx-5">
-                        
                         <div class="form-row pt-2">
                             <div class="col-md-12 col-10 text-end">
-                                <button type="submit" class="btn btn-secondary text-white px-md-4 px-2 py-md-3 py-1 radius-0 light-300"><a href="{% url 'study:daily_new' post.id %}">일지 작성하기</a></button>
+                                <button type="submit" class="end_a" onclick="location.href='{% url 'study:daily_new' post.id %}'">일지 작성하기</button>
                             </div>
                         </div>
                         <!-- 일지목록 -->
                         {% for daily in dailys %}
                         <div class="col-sm-6 col-lg-4 mb-5">
                             <a href="{%url 'study:daily_detail' post.id daily.id%}" class="related-content card text-decoration-none overflow-hidden h-100">
-                                <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
+                                <img class="related-img card-img-top" src="{% static 'img/diary.jpg' %}" alt="Card image cap">
                                 <div class="related-body card-body p-4">
                                     <h5 class="card-title h6 m-0 semi-bold-600 text-dark">제목 : {{daily.title}}</h5>
                                     <p class="card-text pt-2 mb-1 light-300 text-dark">

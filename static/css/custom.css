@@ -4,6 +4,9 @@ Custom CSS for TemplateMo 561 Purple Buzz
 https://templatemo.com/tm-561-purple-buzz
 
 */
+#check{
+    border: 1px solid black;
+}
 #logout input:hover{
     opacity: .5;
 }

@@ -45,7 +45,7 @@
 
             <!-- Start Contact Form -->
             <div class="col-lg-8 ">
-                <form class="contact-form row" method="post" action="{% url 'study:daily_create' post.id %}" role="form">
+                <form class="contact-form row" method="post" action="{% url 'study:daily_create' post.id %}" role="form" enctype="multipart/form-data">
                     {%csrf_token%}
 
                     <div class="col-lg-6 mb-4">
@@ -71,8 +71,8 @@
 
                     <div class="col-lg-6 mb-4">
                         <div class="form-floating">
-                            <input type="file" class="form-control form-control-lg light-300" id="floatingcompany" name="image" placeholder="첨부파일" onchange="fileCheck(this)">
-                            <label for="floatingphone light-300">첨부파일</label>
+                            <input type="file" class="form-control form-control-lg light-300" id="floatingcompany" name="image" placeholder="사진" onchange="fileCheck(this)">
+                            <label for="floatingphone light-300">사진</label>
                         </div>
                     </div>
 
