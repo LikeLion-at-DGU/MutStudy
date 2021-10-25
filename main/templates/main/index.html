@@ -7,11 +7,6 @@
 
         <!-- Start slider -->
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-            </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
 
@@ -22,7 +17,7 @@
                               <br>
 
                           </h1>
-                            <p class="banner-body text-muted py-3 mx-0 px-0">
+                            <p  style="font-size: 20px;" class="banner-body text-muted py-3 mx-0 px-0">
                                 혼자
                               공부할 수록 집중력이 떨어지고 공부할 때마다
                               궁금한점이 생기지만 해결을 못할 때 <br>
@@ -33,17 +28,12 @@
                               스터디 서비스
                           </p>
                             <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="{% url 'main:about' %}"role="button">더 알아보기</a>
-                           
                         </div>
                     </div>
 
                 </div>
-               
-
-                </div>
             </div>    
         </div>
-        <!-- End slider -->
 
     </div>
 </div>
@@ -52,30 +42,6 @@
 
 
 <!-- Start Service -->
-<section class="container overflow-hidden py-5">
-
-    
-    <div class="row gx-5 gx-sm-3 gx-lg-5 gy-lg-5 gy-3 pb-3 projects">
-        <!-- Start Recent Work -->
-        {%for study in my_study%}
-        ddd
-        <div class="col-xl-3 col-md-4 col-sm-6 project ui branding">
-            <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
-                <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-                    <div class="service-work-content text-left text-light">
-                        <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
-                        <p class="card-text">{{study.name}}</p>
-                    </div>
-                </div>
-            </a>
-        </div><!-- End Recent Work -->
-        {%endfor%}
-
-       
-
-    </div>
-</section>
 <!-- End Service -->
 
 
