@@ -176,7 +176,7 @@ def create_notion(request, study_id):
 
 def daily_detail(request,study_id,daily_id):
     post = get_object_or_404(study, pk=study_id)
-    daily = Diary.objects.get(id = daily_id)
+    daily = Daily.objects.get(id = daily_id)
     return render(request, 'study/daily_detail.html',{'post':post, 'daily':daily})
 
 def daily_new(request,study_id):
