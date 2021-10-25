@@ -176,11 +176,13 @@ def daily_detail(request,study_id,daily_id):
     daily = get_object_or_404(Daily, pk = study_id)
     return render(request, 'study/daily_detail.html',{'daily':daily})
 
-def daily_new(request,study_id):
-    return render(request, 'study/daily_new.html')
+def daily_new(request,post_id):
+    daily = get_object_or_404(Daily, pk = post_id)
+    return render(request, 'study/daily_new.html',{'daily':daily})
 
-def daily_create(request,study_id):
-    new_daily = Daily.objects.get(id=study_id)
+def daily_create(request,post_id):
+    new_daily = Daily()
+    new_daily.post = get_object_or_404(Daily,pk=post_id)
     new_daily.title = request.POST['title']
     new_daily.writer = request.POST['writer']
     new_daily.date = request.POST['date']
@@ -188,4 +190,4 @@ def daily_create(request,study_id):
     new_daily.body = request.POST['body']
     new_daily.image = request.FILES.get('image')
     new_daily.save()
-    return redirect('study:daily_detail', study_id)
+    return redirect('study:daily_detail',post_id)

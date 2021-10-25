@@ -45,7 +45,7 @@
 
             <!-- Start Contact Form -->
             <div class="col-lg-8 ">
-                <form class="contact-form row" method="post" action="{%url 'study:daily_create' post.id daily.id%}" role="form">
+                <form class="contact-form row" method="post" action="{% url 'study:daily_create' post.id %}" role="form">
                     {%csrf_token%}
 
                     <div class="col-lg-6 mb-4">
