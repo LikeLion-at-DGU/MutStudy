@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import check, study, todo, notion
+from .models import check, study, todo, notion, Daily
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.views.generic import ListView
@@ -80,6 +80,7 @@ def detail(request, id):
     todos = post.todos.all()
     checks = post.checks.all()
     # notions = post.notions.all()
+    dailys=post.dailys.all()
     notions_all = notion.objects.all().order_by("-id")
     page = int(request.GET.get("p", 1))  # 없으면 1로 지정
     paginator = Paginator(notions_all, 5)
@@ -99,6 +100,7 @@ def detail(request, id):
             "todos": todos,
             "checks": checks,
             "notions": notions,
+            "dailys": dailys,
         },
     )
 
@@ -169,3 +171,23 @@ def create_notion(request, study_id):
     new_notion.post = get_object_or_404(study, pk=study_id)
     new_notion.save()
     return redirect("study:detail", study_id)
+
+def daily_detail(request,study_id,daily_id):
+    daily = get_object_or_404(Daily, pk = study_id)
+    return render(request, 'study/daily_detail.html',{'daily':daily})
+
+def daily_new(request,post_id):
+    daily = get_object_or_404(Daily, pk = post_id)
+    return render(request, 'study/daily_new.html',{'daily':daily})
+
+def daily_create(request,post_id):
+    new_daily = Daily()
+    new_daily.post = get_object_or_404(Daily,pk=post_id)
+    new_daily.title = request.POST['title']
+    new_daily.writer = request.POST['writer']
+    new_daily.date = request.POST['date']
+    new_daily.pub_date = timezone.now()
+    new_daily.body = request.POST['body']
+    new_daily.image = request.FILES.get('image')
+    new_daily.save()
+    return redirect('study:daily_detail',post_id)

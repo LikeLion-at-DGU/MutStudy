@@ -25,4 +25,7 @@ urlpatterns = [
     path("create_todo/<int:study_id>", create_todo, name="create_todo"),
     path("create_check/<int:study_id>", create_check, name="create_check"),
     path("create_notion/<int:study_id>", create_notion, name="create_notion"),
+    path('<int:post_id>/daily_new', daily_new, name='daily_new'),
+    path('daily_detail/<int:study_id>/<int:daily_id>',daily_detail, name='daily_detail'),
+    path('<int:post_id>/daily_create', daily_create, name="daily_create"),
 ]
