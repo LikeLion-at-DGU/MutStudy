@@ -480,7 +480,7 @@
                         <!-- 일지목록 -->
                         {% for daily in dailys %}
                         <div class="col-sm-6 col-lg-4 mb-5">
-                            <a href="{%url 'study:daily_detail' daily.id%}" class="related-content card text-decoration-none overflow-hidden h-100">
+                            <a href="{%url 'study:daily_detail' post.id daily.id%}" class="related-content card text-decoration-none overflow-hidden h-100">
                                 <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
                                 <div class="related-body card-body p-4">
                                     <h5 class="card-title h6 m-0 semi-bold-600 text-dark">제목 : {{daily.title}}</h5>
