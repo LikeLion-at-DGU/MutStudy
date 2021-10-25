@@ -81,7 +81,6 @@ def detail(request, id):
     post = get_object_or_404(study, pk=id)
     todos = post.todos.all()
     checks = post.checks.all()
-    # notions = post.notions.all()
     dailys=post.dailys.all()
     notions_all = notion.objects.all().order_by("-id")
     page = int(request.GET.get("p", 1))  # 없으면 1로 지정
