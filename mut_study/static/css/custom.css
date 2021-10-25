@@ -6,6 +6,7 @@ https://templatemo.com/tm-561-purple-buzz
 */
 #check{
     border: 1px solid black;
+    text-align: center;
 }
 #logout input:hover{
     opacity: .5;
