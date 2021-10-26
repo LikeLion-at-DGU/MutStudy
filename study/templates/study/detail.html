@@ -173,6 +173,9 @@
             <button><a class="end_a" href="{% url 'study:recruit_over' post.id%}">마감하기</a></button>
         {%endif%}
     {%endif%}
+    {%if user.is_superuser%}
+    <button style="margin-top: 10px;"><a class="end_a" href="{% url 'study:delete' post.id %}">삭제하기</a></button>
+    {%endif%}
 </section>
 {%if request.user in post.study_member.all%}
 <!-- 공지사항 시작 -->
