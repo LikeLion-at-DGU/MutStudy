@@ -5,7 +5,8 @@
 <style>
 
 </style>
-<div class="banner-wrapper bg-light">
+
+<div class="banner-wrapper bg-light" style="height: 40em;">
     <div id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
 
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -93,55 +94,34 @@
     </div>
 </section>
 
-<!-- Start View Work -->
 
-<!-- End View Work -->
-
-<!-- Start Recent Work -->
 <section class="py-5 mb-5">
     <div class="container">
         <div class="recent-work-header row text-center pb-5">
             <h2 class="col-md-6 m-auto h2 semi-bold-600 py-5">Top3 스터디</h2>
         </div>
         <div class="row gy-5 g-lg-5 mb-4">
-
-            <!-- Start Recent Work -->
+            {%for post in posts|slice:":3"%}
             <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="{% static 'img/recent-work-01.jpg' %}" alt="Card image">
+                <a href="{%url 'study:detail' post.id%}" class="recent-work card border-0 shadow-lg overflow-hidden">
+                    {%if post.section == '어학'%}
+                    <img class="service card-img" src="{% static 'img/services-07.jpg' %}" alt="Card image">
+                {%elif post.section == '전공'%}
+                    <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
+                {%elif post.section == '자격증'%}
+                    <img class="service card-img" src="{% static 'img/services-05.jpg' %}" alt="Card image">
+                {%elif post.section == '취업'%}
+                    <img class="service card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
+                {%endif%}
                     <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
                         <div class="recent-work-content text-start mb-3 ml-3 text-dark">
-                            <h3 class="card-title light-300">교환학생을 위한 토플</h3>
-                            <p class="card-text">세달동안 토플 90점 맞기</p>
+                            <h3 class="card-title light-300">{{post.name}}</h3>
+                            <p class="card-text">{{post.section}}</p>
                         </div>
                     </div>
                 </a>
             </div><!-- End Recent Work -->
-            <!-- Start Recent Work -->
-            <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="{% static 'img/recent-work-02.jpg' %}" alt="Card image">
-                    <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
-                        <div class="recent-work-content text-start mb-3 ml-3 text-dark">
-                            <h3 class="card-title light-300">공학수학 기초 다지기</h3>
-                            <p class="card-text">공대 기초 수학을 위한 전공 스터디</p>
-                        </div>
-                    </div>
-                </a>
-            </div><!-- End Recent Work -->
-
-            <!-- Start Recent Work -->
-            <div class="col-md-4 mb-3">
-                <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
-                    <img class="recent-work-img card-img" src="{% static 'img/recent-work-03.jpg' %}" alt="Card image">
-                    <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
-                        <div class="recent-work-content text-start mb-3 ml-3 text-dark">
-                            <h3 class="card-title light-300">언론사 대비 논술 시험</h3>
-                            <p class="card-text">언론 직군을 준비하는 사람들을 위한 논술 스터디</p>
-                        </div>
-                    </div>
-                </a>
-            </div><!-- End Recent Work -->
+            {%endfor%}
          
         </div>
     </div>

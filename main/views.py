@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import *
+from study.models import study
 from django.utils import timezone
 
 # Create your views here.
 def showmain(request):
-    return render(request, 'main/index.html')
+    posts = study.objects.filter(is_over=False)
+    return render(request, 'main/index.html',{"posts": posts})
 
 def about(request):
     return render(request, 'main/about.html')

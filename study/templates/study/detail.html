@@ -82,6 +82,7 @@
         margin-left: 5px;
     }
 </style>
+{% if user.is_authenticated %}
 <section style="margin: 20px; margin-left: 35px; margin-top: 30px;">
     <h1 class="titleBox">스터디명 : {{post.name}}</h1>
     <br>
@@ -372,5 +373,13 @@
 
 </section>
 {%endif%}
+{% else %}
+<div style="display:block; text-align: center; width:900px;margin: 300px auto; position:relative;">
+  <h3>로그인 후 이용 가능</h3>
+  <br>
+  <a href="{% url 'account_login' %}" class="btn " style="background-color: rgb(218, 218, 248);">로그인</a>
+  <a href="{% url 'account_signup' %}" class="btn " style="background-color: rgb(218, 218, 248);">회원가입</a>
+</div>
+{% endif %}
 {% endblock %}
 
