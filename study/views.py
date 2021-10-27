@@ -82,7 +82,7 @@ def detail(request, id):
     todos = post.todos.all()
     checks = post.checks.all()
     dailys=post.dailys.all()
-    notions_all = notion.objects.all().order_by("-id")
+    notions_all=post.notions.all().order_by("-id")
     page = int(request.GET.get("p", 1))  # 없으면 1로 지정
     paginator = Paginator(notions_all, 5)
     notions = paginator.get_page(page)
